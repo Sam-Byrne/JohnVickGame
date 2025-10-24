@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -11,9 +11,9 @@ TagManager:
   - Boundary
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Floor
+  - Test / No Collision
   - 
   - 
   - 
@@ -44,3 +44,5 @@ TagManager:
   - name: Boundary
     uniqueID: 1592457807
     locked: 0
+  m_RenderingLayers:
+  - Default
