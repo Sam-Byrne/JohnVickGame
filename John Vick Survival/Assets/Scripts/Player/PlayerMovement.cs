@@ -4,8 +4,11 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed;
     float speedX, speedY;
+    
     Rigidbody2D rb;
+
     Vector2 moveDir;
+
     public Animator animator;
     int direction = 1;
     PlayerMovement pm;

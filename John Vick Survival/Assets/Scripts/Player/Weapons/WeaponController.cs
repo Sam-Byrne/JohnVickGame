@@ -13,11 +13,10 @@ public class WeaponController : MonoBehaviour
     public int pierce;
     protected virtual void Start()
     {
-        pm = FindObjectOfType<Player>();
+        pm = FindObjectOfType<PlayerMovement>();
         currentCooldown = cooldownDuration;
     }
 
-    // Update is called once per frame
     // Virtual keyword tells that it will be overridden in a child class
     // protected means only child classes can access the functions
     protected virtual void Update()
