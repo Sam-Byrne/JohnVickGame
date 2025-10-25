@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     float speedX, speedY;
@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
 
     Vector2 moveDir;
+    public Vector2 MoveDir => moveDir; // Add this line to expose moveDir
 
     public Animator animator;
     int direction = 1;
@@ -22,10 +23,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
         speedX = Input.GetAxisRaw("Horizontal");
         speedY = Input.GetAxisRaw("Vertical");
-        rb.linearVelocity = new Vector2(speedX, speedY).normalized * moveSpeed;
+        moveDir = new Vector2(speedX, speedY).normalized; // Update moveDir here
+        rb.linearVelocity = moveDir * moveSpeed; // Use rb.velocity instead of rb.linearVelocity
 
         animator.SetFloat("Horizontal", speedX);
         animator.SetFloat("Vertical", speedY);

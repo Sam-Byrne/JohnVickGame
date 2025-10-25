@@ -3,6 +3,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
 
+    protected PlayerMovement pm;
 
     [Header("Weapon Stats")]
     public GameObject prefab;
@@ -17,6 +18,7 @@ public class WeaponController : MonoBehaviour
         currentCooldown = cooldownDuration;
     }
 
+    // Update is called once per frame
     // Virtual keyword tells that it will be overridden in a child class
     // protected means only child classes can access the functions
     protected virtual void Update()
