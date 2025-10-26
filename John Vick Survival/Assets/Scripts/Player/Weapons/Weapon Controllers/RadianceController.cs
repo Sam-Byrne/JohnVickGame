@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class RadianceController : WeaponController 
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
@@ -13,7 +12,8 @@ public class RadianceController : WeaponController
         base.Attack();
         GameObject spawnedRadiance = Instantiate(prefab);
         spawnedRadiance.transform.position = transform.position;
-        
+        spawnedRadiance.transform.parent = transform;
+
     }
 
 }
