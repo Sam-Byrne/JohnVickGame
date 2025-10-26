@@ -104,3 +104,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnifeBehaviour
   destroyAfterSeconds: 3
+  weaponData: {fileID: 11400000, guid: 19a2f2523b4a8ce4da0997bc514dcaa8, type: 2}

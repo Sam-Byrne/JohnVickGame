@@ -104,3 +104,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RadianceBehaviour
   destroyAfterSeconds: 3
+  weaponData: {fileID: 11400000, guid: c995f1c721559db4784a71c4da11f473, type: 2}
