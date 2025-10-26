@@ -10,7 +10,7 @@ public class RadianceController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedRadiance = Instantiate(weaponData.prefab);
+        GameObject spawnedRadiance = Instantiate(weaponData.Prefab);
         spawnedRadiance.transform.position = transform.position;
         spawnedRadiance.transform.parent = transform;
 
