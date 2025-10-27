@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float lastVerticalVector;
     public Vector2 lastMovedVector;
 
+    public CharacterScriptableObject characterData;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
