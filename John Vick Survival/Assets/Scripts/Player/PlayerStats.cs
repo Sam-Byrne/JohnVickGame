@@ -13,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     float currentProjectileSpeed;
 
 
+
+
     // xp and level
     [Header("Experience/Level")]
     public int experience = 0;
@@ -82,7 +84,11 @@ public class PlayerStats : MonoBehaviour
     public void Kill()
     {
         Debug.Log("Player Died");
+        FindObjectOfType<PlayerMovement>().alive = false;
+
     }
+
+
 
 
     public void RestoreHealth(float amount)

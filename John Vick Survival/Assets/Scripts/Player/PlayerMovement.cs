@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float lastHorizontalVector;
     public float lastVerticalVector;
     public Vector2 lastMovedVector;
+    public bool alive;
 
     public CharacterScriptableObject characterData;
 
@@ -21,20 +22,29 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         pm = GetComponent<PlayerMovement>();
         lastMovedVector = new Vector2(1, 0f);
+        alive = true;
     }
 
 
     void Update()
     {
-        speedX = Input.GetAxisRaw("Horizontal");
-        speedY = Input.GetAxisRaw("Vertical");
-        moveDir = new Vector2(speedX, speedY).normalized; // Update moveDir here
-        rb.linearVelocity = moveDir * moveSpeed; // Use rb.velocity instead of rb.linearVelocity
+        if (alive == true)
+        {
 
-        animator.SetFloat("Horizontal", speedX);
-        animator.SetFloat("Vertical", speedY);
-        animator.SetFloat("Speed", speedX);
-        animator.SetInteger("Direction", direction);
+            speedX = Input.GetAxisRaw("Horizontal");
+            speedY = Input.GetAxisRaw("Vertical");
+            moveDir = new Vector2(speedX, speedY).normalized; // Update moveDir here
+            rb.linearVelocity = moveDir * moveSpeed; // Use rb.velocity instead of rb.linearVelocity
+
+            animator.SetFloat("Horizontal", speedX);
+            animator.SetFloat("Vertical", speedY);
+            animator.SetFloat("Speed", speedX);
+            animator.SetInteger("Direction", direction);
+        }
+        else if (alive == false)
+        {
+            animator.SetBool("Alive",  false);
+        }
 
         if (moveDir.x != 0)
         {

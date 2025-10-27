@@ -20,10 +20,17 @@ public class WeaponController : MonoBehaviour
     // protected means only child classes can access the functions
     protected virtual void Update()
     {
-        currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0f)
+        if (pm != null && pm.alive)
         {
-            Attack();
+            currentCooldown -= Time.deltaTime;
+            if (currentCooldown <= 0f)
+            {
+                Attack();
+            }
+        }
+        else
+        {
+            currentCooldown = weaponData.CooldownDuration;
         }
     }
     
