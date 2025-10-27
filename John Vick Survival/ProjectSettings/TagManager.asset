@@ -51,6 +51,9 @@ TagManager:
   - name: Weapons
     uniqueID: 4217945449
     locked: 0
+  - name: Pickups
+    uniqueID: 1294868537
+    locked: 0
   - name: Enemy
     uniqueID: 1039882409
     locked: 0

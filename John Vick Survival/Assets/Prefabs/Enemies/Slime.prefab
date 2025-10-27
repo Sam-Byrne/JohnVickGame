@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7454114784713915421}
   - component: {fileID: -6432431529488318380}
   - component: {fileID: -2622070980974816838}
+  - component: {fileID: 7133891722732016210}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -172,7 +173,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1039882409
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -7078261816480267791, guid: e3e4cfa96802e1447972c6118dc1f1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -279,3 +280,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyData: {fileID: 11400000, guid: c3c44037699d60246b686ad6cbcbbeac, type: 2}
+--- !u!114 &7133891722732016210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893568915628671063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c574c5a16090eb4d84e8a15badf78a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropRateManager
+  drops:
+  - name: XP
+    itemPrefab: {fileID: 1193184651687427935, guid: 33c78dda0f57b6c4dbd3776f2bd9fbd6, type: 3}
+    dropRate: 100
+  - name: XPChunk
+    itemPrefab: {fileID: 3103939244938215824, guid: fb267a7df38d71846a731caa7507bc6c, type: 3}
+    dropRate: 5
