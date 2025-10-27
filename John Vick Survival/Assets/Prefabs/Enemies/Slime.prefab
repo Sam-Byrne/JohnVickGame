@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2882341194018328498}
   - component: {fileID: 2929521788874037685}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,8 @@ GameObject:
   - component: {fileID: -6432431529488318380}
   - component: {fileID: -2622070980974816838}
   - component: {fileID: 7133891722732016210}
-  m_Layer: 0
+  - component: {fileID: 2630959471043639923}
+  m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -299,3 +300,30 @@ MonoBehaviour:
   - name: XPChunk
     itemPrefab: {fileID: 3103939244938215824, guid: fb267a7df38d71846a731caa7507bc6c, type: 3}
     dropRate: 5
+--- !u!50 &2630959471043639923
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893568915628671063}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 5555
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
