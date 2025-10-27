@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: John
   m_EditorClassIdentifier: Assembly-CSharp::CharacterScriptableObject
   startingWeapon: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 100
   recovery: 0
   might: 0
   projectileSpeed: 0

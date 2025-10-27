@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        if (invincibilityTimer >0)
+        if (invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
         }
@@ -62,8 +62,8 @@ public class PlayerStats : MonoBehaviour
             experienceCap += experienceCapIncrease;
         }
     }
-    
-    public void TakeDamage (float dmg)
+
+    public void TakeDamage(float dmg)
     {
 
         if (!isInvincible)
@@ -78,11 +78,24 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-    
+
     public void Kill()
     {
         Debug.Log("Player Died");
     }
 
+
+    public void RestoreHealth(float amount)
+    {
+        if (currentHealth < characterData.MaxHealth)
+        {
+            currentHealth += amount;
+
+            if (currentHealth > characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+    }
 
 }

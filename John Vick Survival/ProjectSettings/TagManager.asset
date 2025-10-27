@@ -15,9 +15,9 @@ TagManager:
   - Player
   - Floor
   - Test / No Collision
-  - 
-  - 
-  - 
+  - Pickups
+  - Enemy
+  - Weapons
   - 
   - 
   - 

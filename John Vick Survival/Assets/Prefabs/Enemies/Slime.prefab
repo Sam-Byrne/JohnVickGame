@@ -299,7 +299,16 @@ MonoBehaviour:
     dropRate: 100
   - name: XPChunk
     itemPrefab: {fileID: 3103939244938215824, guid: fb267a7df38d71846a731caa7507bc6c, type: 3}
-    dropRate: 5
+    dropRate: 4
+  - name: LowPotion
+    itemPrefab: {fileID: 938252807629958433, guid: 903298e17e5041845b9bae280a88a9fb, type: 3}
+    dropRate: 2
+  - name: MedPotion
+    itemPrefab: {fileID: 6739940817219727953, guid: eb77b2de2a33bab418bd8b748e360e12, type: 3}
+    dropRate: 0.1
+  - name: HighPotion
+    itemPrefab: {fileID: 1347839542205926799, guid: 03aa623b6e384584a93cef9b3bb146f5, type: 3}
+    dropRate: 0.01
 --- !u!50 &2630959471043639923
 Rigidbody2D:
   serializedVersion: 5
