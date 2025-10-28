@@ -15,6 +15,11 @@ public class PlayerStats : MonoBehaviour
 
     public float CurrentMagnet => currentMagnet;
 
+    //SpawnWeapon(characterData.StartingWeapon);
+
+    // held weapons 
+    //public List<GameObject> spawnedWeapons;
+
 
     // xp and level
     [Header("Experience/Level")]
@@ -119,6 +124,13 @@ public class PlayerStats : MonoBehaviour
                 currentHealth = characterData.MaxHealth;
             }
         }
+    }
+
+    public void SpawnWeapon(GameObject weapon)
+    {
+        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        spawnedWeapon.transform.SetParent(transform);
+        //spawnedWeapons.Add(spawnedWeapon);
     }
 
 }
