@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class XP : MonoBehaviour, ICollectable
+public class XP : Pickup, ICollectable
 {
     public int experienceGranted;
     public void Collect()
@@ -8,8 +8,10 @@ public class XP : MonoBehaviour, ICollectable
 
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.IncreaseExperience(experienceGranted);
-        Destroy(gameObject);
+
     }
+
+    
 
 
 }

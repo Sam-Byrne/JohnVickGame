@@ -11,8 +11,9 @@ public class PlayerStats : MonoBehaviour
     float currentRecovery;
     float currentMight;
     float currentProjectileSpeed;
+    float currentMagnet;
 
-
+    public float CurrentMagnet => currentMagnet;
 
 
     // xp and level
@@ -35,6 +36,7 @@ public class PlayerStats : MonoBehaviour
         currentRecovery = characterData.Recovery;
         currentMight = characterData.Might;
         currentProjectileSpeed = characterData.ProjectileSpeed;
+        currentMagnet = characterData.Magnet;
     }
 
     void Update()
