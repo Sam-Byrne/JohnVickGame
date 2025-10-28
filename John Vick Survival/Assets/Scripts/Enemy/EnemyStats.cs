@@ -4,9 +4,9 @@ public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
     // current stats of the enemy
-    float currentMoveSpeed;
-    float currentHealth;
-    float currentDamage;
+    public float currentMoveSpeed;
+    public float currentHealth;
+    public float currentDamage;
     void Awake()
     {
         currentMoveSpeed = enemyData.MoveSpeed;
