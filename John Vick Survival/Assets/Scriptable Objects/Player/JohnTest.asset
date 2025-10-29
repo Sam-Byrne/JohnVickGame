@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab319bb06f360b4ebe1660a3650c96f, type: 3}
+  m_Name: JohnTest
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterScriptableObject
+  startingWeapon: {fileID: 3269860029053570601, guid: 9c5157f1092de1d4583b4eab220b2938, type: 3}
+  maxHealth: 100
+  recovery: 1
+  might: 0
+  projectileSpeed: 0
+  magnet: 0.36

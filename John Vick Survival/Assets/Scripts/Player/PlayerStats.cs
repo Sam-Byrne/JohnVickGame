@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
 
-    public CharacterScriptableObject characterData;
+    CharacterScriptableObject characterData;
 
     // current stats
 
@@ -15,10 +17,11 @@ public class PlayerStats : MonoBehaviour
 
     public float CurrentMagnet => currentMagnet;
 
-    //SpawnWeapon(characterData.StartingWeapon);
+
 
     // held weapons 
-    //public List<GameObject> spawnedWeapons;
+    public List<GameObject> spawnedWeapons;
+
 
 
     // xp and level
@@ -37,11 +40,17 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+        characterData = CharacterSelector.GetData();
+        CharacterSelector.instance.DestroySingleton();
+
         currentHealth = characterData.MaxHealth;
         currentRecovery = characterData.Recovery;
         currentMight = characterData.Might;
         currentProjectileSpeed = characterData.ProjectileSpeed;
         currentMagnet = characterData.Magnet;
+
+        // starting weapon
+        SpawnWeapon(characterData.StartingWeapon);
     }
 
     void Update()
@@ -130,7 +139,8 @@ public class PlayerStats : MonoBehaviour
     {
         GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform);
-        //spawnedWeapons.Add(spawnedWeapon);
+        spawnedWeapons.Add(spawnedWeapon);
+
     }
 
 }
