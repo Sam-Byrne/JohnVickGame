@@ -143,4 +143,23 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    [Header("Gameplay Stats")]
+    public int kills = 0;
+
+    public void AddKill()
+    {
+        kills++;
+    }
+
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return characterData.MaxHealth;
+    }
+
 }

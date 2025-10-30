@@ -3,16 +3,24 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
+    private PlayerStats player;
     // current stats of the enemy
     public float currentMoveSpeed;
     public float currentHealth;
     public float currentDamage;
+
+
+    
     void Awake()
     {
+
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        player = FindObjectOfType<PlayerStats>();
     }
+    
+    
 
     public void TakeDamage(float dmg)
     {
@@ -23,8 +31,14 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+    
     public void Kill()
     {
+        if (player != null)
+        {
+            player.AddKill();
+        }
+        
         Destroy(gameObject);
     }
 

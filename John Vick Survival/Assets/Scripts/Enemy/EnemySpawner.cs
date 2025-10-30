@@ -7,11 +7,11 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public class EnemyType
     {
-        public GameObject prefab;      // Enemy prefab to spawn
-        public float unlockTime;       // Time (in seconds) when this enemy starts spawning
+        public GameObject prefab;      // enemy prefab to spawn
+        public float unlockTime;       // time before this enemy starts spawning
     }
 
-    public List<EnemyType> enemyTypes = new List<EnemyType>(); // assign in inspector
+    public List<EnemyType> enemyTypes = new List<EnemyType>(); 
     public Transform player;
     public float spawnRadius = 10f;
     public int baseEnemyCount = 10;
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            // Scale up difficulty
+            // scale difficulty
             float minutes = gameTimer / 60f;
             int enemyCount = Mathf.FloorToInt(baseEnemyCount + minutes * 5f);
             float statMultiplier = 1f + (minutes * 0.1f);
@@ -79,16 +79,16 @@ public class EnemySpawner : MonoBehaviour
         if (unlocked.Count == 0)
             return null;
 
-        // Calculate a weight for each enemy based on how long it’s been unlocked
+        // calculate a weight for each enemy based on how long its been unlocked
         List<float> weights = new List<float>();
         foreach (EnemyType type in unlocked)
         {
             float age = time - type.unlockTime;
-            float weight = Mathf.Clamp01(age / 120f); // 2 minutes to reach full chance
+            float weight = Mathf.Clamp01(age / 120f); 
             weights.Add(weight);
         }
 
-        // Normalize the weights (so they add up to 1)
+
         float totalWeight = 0f;
         foreach (float w in weights) totalWeight += w;
 
