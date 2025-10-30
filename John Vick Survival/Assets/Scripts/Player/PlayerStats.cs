@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
 
     float currentHealth;
     float currentRecovery;
-    float currentMight;
+    float currentDamage;
     float currentProjectileSpeed;
     float currentMagnet;
 
@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
 
         currentHealth = characterData.MaxHealth;
         currentRecovery = characterData.Recovery;
-        currentMight = characterData.Might;
+        currentDamage = characterData.Damage;
         currentProjectileSpeed = characterData.ProjectileSpeed;
         currentMagnet = characterData.Magnet;
 
