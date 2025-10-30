@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142e949ab4ca220448ec34251ad59812, type: 3}
   m_Name: Slime Enemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScriptableObject
-  moveSpeed: 1
+  moveSpeed: 0.5
   maxHealth: 10
   damage: 5

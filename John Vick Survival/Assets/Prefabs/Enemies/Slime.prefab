@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyData: {fileID: 11400000, guid: c3c44037699d60246b686ad6cbcbbeac, type: 2}
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: c86751efe84a71746891c22e274062a3, type: 3}
+  damageSound: {fileID: 8300000, guid: afc979cf8a792434db83d110f247d2bd, type: 3}
+  deathSound: {fileID: 8300000, guid: 117936684ef405343887a514dcae30a8, type: 3}
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0

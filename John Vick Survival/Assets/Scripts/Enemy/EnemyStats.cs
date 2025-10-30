@@ -9,6 +9,7 @@ public class EnemyStats : MonoBehaviour
     public AudioClip damageSound;
     public AudioClip deathSound;
     private AudioSource audioSource;
+    
 
     // current stats
     public float currentMoveSpeed;
@@ -22,7 +23,7 @@ public class EnemyStats : MonoBehaviour
         currentDamage = enemyData.Damage;
         player = FindObjectOfType<PlayerStats>();
 
-        // Add or get an AudioSource
+        
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -36,9 +37,9 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= dmg;
 
-        // play damage sound if available
+        
         if (damageSound != null)
-            audioSource.PlayOneShot(damageSound);
+            AudioSource.PlayClipAtPoint(damageSound, transform.position);
 
         if (currentHealth <= 0)
         {
@@ -50,6 +51,7 @@ public class EnemyStats : MonoBehaviour
     {
         // play death sound before destroying
         if (deathSound != null)
+            AudioSource.PlayClipAtPoint(damageSound, transform.position);
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         if (player != null)

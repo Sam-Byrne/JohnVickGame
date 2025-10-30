@@ -27,10 +27,10 @@ public class HUDController : MonoBehaviour
         // Initialize
         healthBar.value = 1;
         xpBar.value = 0;
-        levelText.text = "Lv 1";
+        levelText.text = "LvL 1";
         timerText.text = "00:00";
         killText.text = "Kills: 0";
-        healthText.text = "HP: 0 / 0";
+        healthText.text = "0 / 0";
     }
 
     void Update()
@@ -46,7 +46,7 @@ public class HUDController : MonoBehaviour
 
         float currentHP = playerStats.GetCurrentHealth();
         float maxHP = playerStats.GetMaxHealth();
-        float healthPercent = Mathf.Clamp01(currentHP / maxHP);
+        float healthPercent = Mathf.Clamp01( + currentHP / maxHP);
 
         healthBar.value = healthPercent;
         healthText.text = $"{Mathf.CeilToInt(currentHP)} / {Mathf.CeilToInt(maxHP)}";
