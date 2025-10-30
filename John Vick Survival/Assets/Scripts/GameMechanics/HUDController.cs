@@ -14,6 +14,8 @@ public class HUDController : MonoBehaviour
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI killText;
+    public Image damageVignette;
+
 
     private float timer = 0f;
 
@@ -44,9 +46,18 @@ public class HUDController : MonoBehaviour
 
         float currentHP = playerStats.GetCurrentHealth();
         float maxHP = playerStats.GetMaxHealth();
+        float healthPercent = Mathf.Clamp01(currentHP / maxHP);
 
-        healthBar.value = Mathf.Clamp01(currentHP / maxHP);
+        healthBar.value = healthPercent;
         healthText.text = $"{Mathf.CeilToInt(currentHP)} / {Mathf.CeilToInt(maxHP)}";
+
+        Color vignetteColor = damageVignette.color;
+        float targetAlpha = Mathf.Lerp(2f, 0f, healthPercent); 
+        vignetteColor.a = Mathf.Lerp(vignetteColor.a, targetAlpha, Time.deltaTime * 5f);
+        damageVignette.color = vignetteColor;
+
+        
+
 
 
         xpBar.value = (float)playerStats.experience / playerStats.experienceCap;
