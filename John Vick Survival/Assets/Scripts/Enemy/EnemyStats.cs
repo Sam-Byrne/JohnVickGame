@@ -27,7 +27,7 @@ public class EnemyStats : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    
+
     private void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -35,5 +35,12 @@ public class EnemyStats : MonoBehaviour
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage);
         }
+    }
+    
+    public void ApplyScaling(float multiplier)
+    {
+        currentHealth *= multiplier;
+        currentDamage *= multiplier;
+        currentMoveSpeed *= 1f + ((multiplier - 1f) / 2f); // small speed boost
     }
 }
