@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XP
   experienceGranted: 1
+  XPSound: {fileID: 8300000, guid: f141233bf9e13ba4498a2c2506c7695a, type: 3}
 --- !u!50 &3018779992780761393
 Rigidbody2D:
   serializedVersion: 5
