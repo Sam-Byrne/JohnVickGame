@@ -10,7 +10,7 @@ public class PlayerCollector : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerStats>();
-        playerCollector = FindObjectOfType<CircleCollider2D>();
+        playerCollector = GetComponent<CircleCollider2D>();
     }
 
     void Update() 
