@@ -6,8 +6,6 @@ public class HealthPotion : Pickup, ICollectable
 
     public void Collect()
     {
-        if (isCollected) return;
-        isCollected = true;
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.RestoreHealth(healthToRestore);
         Destroy(gameObject);
