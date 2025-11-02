@@ -28,5 +28,10 @@ public class KnifeBehaviour : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
+
+        if (col.CompareTag("Boundary"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

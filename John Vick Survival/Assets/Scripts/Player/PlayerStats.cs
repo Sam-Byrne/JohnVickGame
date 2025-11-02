@@ -121,16 +121,18 @@ public class PlayerStats : MonoBehaviour
         float hpPercent = currentHealth / maxHealth;
         if (sfxSource)
         {
-            if (hpPercent <= 0.30f && heartbeatIntense)
+            if (hpPercent <= 0.25f && heartbeatIntense)
                 sfxSource.PlayOneShot(heartbeatIntense);
-            else if (hpPercent > 0.30f && heartbeatNormal)
+            else if (hpPercent > 0.25f && heartbeatNormal && hpPercent < 0.50f)
                 sfxSource.PlayOneShot(heartbeatNormal);
         }
-    
+
+        HUDController hud = FindObjectOfType<HUDController>();
+        if (hud != null) hud.FlashDamage();
+        
 
 
-
-        if (currentHealth <= 0)
+        if (currentHealth <= 0.99f)
         {
             currentHealth = 0;
             Die();

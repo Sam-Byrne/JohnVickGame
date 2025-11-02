@@ -83,6 +83,8 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             enemy.TakeDamage(currentDamage);
             ReducePierce();
         }
+
+        
     }
     
     void ReducePierce()

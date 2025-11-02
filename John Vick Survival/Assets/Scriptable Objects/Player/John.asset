@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxHealth: 100
   Damage: 1
   ProjectileSpeed: 1
-  Recovery: 1
+  Recovery: 0.334
   Magnet: 0.3
   MoveSpeed: 3.5
   StartingWeapon: {fileID: 1877178212165942967, guid: 9c5157f1092de1d4583b4eab220b2938, type: 3}
