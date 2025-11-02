@@ -31,6 +31,8 @@ public class PlayerStats : MonoBehaviour
     public int experienceCap = 5;
     public int experienceCapIncrease;
 
+    public static System.Action OnLevelUpUI;
+
 
     // i frames
     [Header("I-Frames")]
@@ -80,6 +82,9 @@ public class PlayerStats : MonoBehaviour
             level++;
             experience -= experienceCap;
             experienceCap += experienceCapIncrease;
+
+            Time.timeScale = 0f;
+            OnLevelUpUI?.Invoke();
         }
     }
 
@@ -161,5 +166,8 @@ public class PlayerStats : MonoBehaviour
     {
         return characterData.MaxHealth;
     }
+
+
+    
 
 }
