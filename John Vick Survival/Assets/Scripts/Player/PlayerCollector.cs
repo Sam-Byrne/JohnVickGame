@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerCollector : MonoBehaviour
 {
-    PlayerStats player;
+    private PlayerStats player;
     CircleCollider2D playerCollector;
 
     void Start()
     {
-        player = FindObjectOfType<PlayerStats>();
+        player = GetComponentInParent<PlayerStats>();
         playerCollector = GetComponent<CircleCollider2D>();
     }
 
@@ -16,14 +16,16 @@ public class PlayerCollector : MonoBehaviour
         playerCollector.radius = player.currentMagnet;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (player.currentHealth > 0)
+        if (!player || !player.alive) return; 
+
+        ICollectable item = col.GetComponent<ICollectable>();
+        if (item != null)
         {
-            if (col.TryGetComponent(out ICollectable collectable))
-            {
-                collectable.Collect();
-            }
+            item.Collect();
         }
     }
+
+
 }

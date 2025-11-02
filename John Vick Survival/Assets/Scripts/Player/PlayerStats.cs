@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        // If coming from character select
+        // coming from character select
         if (CharacterSelector.instance != null)
         {
             characterData = CharacterSelector.GetData();
@@ -54,7 +54,7 @@ public class PlayerStats : MonoBehaviour
             Debug.LogWarning("CharacterSelector missing -> Using inspector-assigned characterData.");
         }
 
-        // Runtime stat initialization
+        // runtime stat stuff
         maxHealth = characterData.MaxHealth;
         currentHealth = maxHealth;
         currentDamage = characterData.Damage;
@@ -62,10 +62,10 @@ public class PlayerStats : MonoBehaviour
         currentRecovery = characterData.Recovery;
         currentMagnet = characterData.Magnet;
 
-        // Apply move speed to movement script
+        // apply move speed to movement script
         GetComponent<PlayerMovement>().moveSpeed = characterData.MoveSpeed;
 
-        // Give starting weapon
+
         if (characterData.StartingWeapon != null)
             Instantiate(characterData.StartingWeapon, transform);
     }
@@ -114,7 +114,6 @@ public class PlayerStats : MonoBehaviour
     }
 
 
-
     void Die()
     {
         if (!alive) return;
@@ -128,11 +127,6 @@ public class PlayerStats : MonoBehaviour
 
         StartCoroutine(DeathSequence());
     }
-
-
-
-
-
 
 
     IEnumerator DeathSequence()
@@ -149,9 +143,6 @@ public class PlayerStats : MonoBehaviour
         Time.timeScale = 0f;
 
     }
-
-
-
 
 
     public void IncreaseExperience(int amount) => experience += amount;
