@@ -4,7 +4,7 @@ public class KnifeBehaviour : MonoBehaviour
 {
     float damage;
     Vector2 direction;
-    float moveSpeed; 
+    float moveSpeed;
 
     public void Initialize(float dmg, Vector2 dir, float speed)
     {
@@ -15,6 +15,13 @@ public class KnifeBehaviour : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle - 45f);
     }
+    
+    void Start()
+    {
+        Destroy(gameObject, 6f); // destroy after 6 seconds if nothing hits
+    }
+
+
 
     void Update()
     {

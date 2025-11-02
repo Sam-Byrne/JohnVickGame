@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         {
             // scale difficulty
             float minutes = gameTimer / 60f;
-            int enemyCount = Mathf.FloorToInt((baseEnemyCount + minutes) * 5f + 5f);
+            int enemyCount = Mathf.FloorToInt((baseEnemyCount + minutes) * 2f + 5f);
             float statMultiplier = 1f + (minutes * 0.5f);
 
             Debug.Log($"Wave: {enemyCount} enemies (x{statMultiplier:F2} stats)");
