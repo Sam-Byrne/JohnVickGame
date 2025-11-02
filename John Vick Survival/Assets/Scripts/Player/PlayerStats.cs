@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerStats : MonoBehaviour
 {
     public static Action OnLevelUpUI;
+    public AudioSource musicSource;
+
 
     public CharacterScriptableObject characterData;
 
@@ -25,9 +27,20 @@ public class PlayerStats : MonoBehaviour
     private float invulnTimer = 0f;
     public bool invulnerable = false;
 
+    [Header("Audio")]
+    public AudioSource sfxSource;               // assign in inspector
+    public AudioClip damageSFX;                 // plays on every hit
+    public AudioClip heartbeatNormal;           // plays if health > 30%
+    public AudioClip heartbeatIntense;          // plays if health < 30%
+    public AudioClip deathSFX;                  // plays when player dies
 
-    public bool alive = true;        
-    PlayerMovement pm;               
+
+
+
+    public bool alive = true;
+    PlayerMovement pm;              
+
+    public GameObject PlayerDeathEffect; 
 
 
 
@@ -103,6 +116,20 @@ public class PlayerStats : MonoBehaviour
         if (invulnerable) return;
 
         currentHealth -= dmg;
+        if (sfxSource && damageSFX)
+            sfxSource.PlayOneShot(damageSFX);
+        float hpPercent = currentHealth / maxHealth;
+        if (sfxSource)
+        {
+            if (hpPercent <= 0.30f && heartbeatIntense)
+                sfxSource.PlayOneShot(heartbeatIntense);
+            else if (hpPercent > 0.30f && heartbeatNormal)
+                sfxSource.PlayOneShot(heartbeatNormal);
+        }
+    
+
+
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -116,33 +143,21 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        if (!alive) return;
         alive = false;
+        if (pm != null) pm.enabled = false;
 
-        pm.Die(); 
+        if (sfxSource && deathSFX)
+        sfxSource.PlayOneShot(deathSFX);
 
-        Animator anim = GetComponentInChildren<Animator>();
-        anim.updateMode = AnimatorUpdateMode.UnscaledTime; 
-        anim.Play("Player_Death", 0, 0f); 
+        Instantiate(PlayerDeathEffect, transform.position, Quaternion.identity);
 
-        StartCoroutine(DeathSequence());
-    }
-
-
-    IEnumerator DeathSequence()
-    {
-        Animator anim = GetComponentInChildren<Animator>();
-
-        anim.updateMode = AnimatorUpdateMode.UnscaledTime;
-
-        anim.SetBool("Alive", false);
-        anim.Play("Player_Death", 0, 0f); 
-
-        yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length);
-
-        Time.timeScale = 0f;
+        FindObjectOfType<MusicFadeController>().SlowMusic();
+        Destroy(gameObject);
 
     }
+    
+
+
 
 
     public void IncreaseExperience(int amount) => experience += amount;

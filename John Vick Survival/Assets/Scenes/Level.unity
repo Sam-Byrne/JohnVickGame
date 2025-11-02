@@ -82803,6 +82803,135 @@ RectTransform:
   m_AnchoredPosition: {x: 8.061015, y: 0.3133998}
   m_SizeDelta: {x: 5.2941, y: -0.6268}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &291101700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 291101702}
+  - component: {fileID: 291101701}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &291101701
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291101700}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &291101702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291101700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 721616291}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &303512326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5871529030450397702, guid: 03aa623b6e384584a93cef9b3bb146f5, type: 3}
@@ -161418,13 +161547,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 459548011}
+  - component: {fileID: 459548012}
   m_Layer: 0
   m_Name: LevelMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &459548011
 Transform:
   m_ObjectHideFlags: 0
@@ -161441,6 +161571,19 @@ Transform:
   - {fileID: 1832770709}
   m_Father: {fileID: 721616291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &459548012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459548010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0e370a6d499b4478950d33d243ce05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicFadeController
+  musicSource: {fileID: 1832770710}
 --- !u!1 &482842374
 GameObject:
   m_ObjectHideFlags: 0
@@ -161753,6 +161896,7 @@ Transform:
   m_Children:
   - {fileID: 1118767018}
   - {fileID: 459548011}
+  - {fileID: 291101702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &735206635
@@ -164858,6 +165002,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 861e317e9a7f4694595b4438e93b4862, type: 3}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: damageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ac9f411435e028347889413826b833a4, type: 3}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 291101701}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: characterData
       value: 
       objectReference: {fileID: 11400000, guid: cc3c030586dde7c42af252a3c800cdc8, type: 2}
@@ -164869,6 +165025,18 @@ PrefabInstance:
       propertyPath: invulnDuration
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: heartbeatNormal
+      value: 
+      objectReference: {fileID: 8300000, guid: 49fb2acd70adb1642bc582876c9e8df3, type: 3}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: heartbeatIntense
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a13c42f96887dc4aab4a01254526b60, type: 3}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: PlayerDeathEffect
+      value: 
+      objectReference: {fileID: 6970031970588987673, guid: 9e7084b319e7a134b8cd9a4c386b5330, type: 3}
     - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: experienceCapIncrease
       value: 10

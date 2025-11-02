@@ -343,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173372949}
   - component: {fileID: 173372950}
+  - component: {fileID: 173372951}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -386,6 +387,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e0c6f831ea260644bd66c84efd5d961, type: 3}
   - {fileID: 8300000, guid: b373ced010a27bd4592281abc3c62ca3, type: 3}
   - {fileID: 8300000, guid: e599ca08b58fb62428a463d37a287265, type: 3}
+--- !u!114 &173372951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173372948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0e370a6d499b4478950d33d243ce05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicFadeController
+  musicSource: {fileID: 1558295926}
 --- !u!1 &244439906
 GameObject:
   m_ObjectHideFlags: 0
