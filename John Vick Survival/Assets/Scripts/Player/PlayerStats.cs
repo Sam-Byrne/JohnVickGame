@@ -1,81 +1,91 @@
 using UnityEngine;
+using System;
 using System.Collections;
-using System.Collections.Generic;
-
 public class PlayerStats : MonoBehaviour
 {
+    public static Action OnLevelUpUI;
 
-    CharacterScriptableObject characterData;
+    public CharacterScriptableObject characterData;
 
-    // current stats
+    [Header("Runtime Stats")]
+    public float maxHealth;
+    public float currentHealth;
+    public float currentDamage;
+    public float currentProjectileSpeed;
+    public float currentRecovery;
+    public float currentMagnet;
 
-    float currentHealth;
-    float currentRecovery;
-    float currentDamage;
-    float currentProjectileSpeed;
-    float currentMagnet;
-
-    public float CurrentMagnet => currentMagnet;
-
-
-
-    // held weapons 
-    public List<GameObject> spawnedWeapons;
-
-
-
-    // xp and level
-    [Header("Experience/Level")]
-    public int experience = 0;
     public int level = 1;
-    public int experienceCap = 5;
-    public int experienceCapIncrease;
+    public int experience = 0;
+    public int experienceCap = 10;
+    public int experienceCapIncrease = 5;
 
-    public static System.Action OnLevelUpUI;
+    [Header("Damage / IFrames")]
+    public float invulnDuration = 0.2f;
+    private float invulnTimer = 0f;
+    public bool invulnerable = false;
 
 
-    // i frames
-    [Header("I-Frames")]
-    public float invincibilityDuration;
-    float invincibilityTimer;
-    bool isInvincible;
+    public bool alive = true;        
+    PlayerMovement pm;               
+
+
+
+    public int kills = 0;
+
+    void Start()
+    {
+        pm = GetComponent<PlayerMovement>();   
+    }
+
 
     void Awake()
     {
-        characterData = CharacterSelector.GetData();
-        CharacterSelector.instance.DestroySingleton();
+        Time.timeScale = 1f;
 
-        currentHealth = characterData.MaxHealth;
-        currentRecovery = characterData.Recovery;
+        // If coming from character select
+        if (CharacterSelector.instance != null)
+        {
+            characterData = CharacterSelector.GetData();
+            CharacterSelector.instance.DestroySingleton();
+        }
+        else
+        {
+            Debug.LogWarning("CharacterSelector missing -> Using inspector-assigned characterData.");
+        }
+
+        // Runtime stat initialization
+        maxHealth = characterData.MaxHealth;
+        currentHealth = maxHealth;
         currentDamage = characterData.Damage;
         currentProjectileSpeed = characterData.ProjectileSpeed;
+        currentRecovery = characterData.Recovery;
         currentMagnet = characterData.Magnet;
 
-        // starting weapon
-        SpawnWeapon(characterData.StartingWeapon);
+        // Apply move speed to movement script
+        GetComponent<PlayerMovement>().moveSpeed = characterData.MoveSpeed;
+
+        // Give starting weapon
+        if (characterData.StartingWeapon != null)
+            Instantiate(characterData.StartingWeapon, transform);
     }
 
     void Update()
     {
-        if (invincibilityTimer > 0)
-        {
-            invincibilityTimer -= Time.deltaTime;
-        }
-        else
-        {
-            isInvincible = false;
-        }
-
-        Recover();
+        RecoverHP();
+        CheckLevelUp();
     }
 
-    public void IncreaseExperience(int amount)
+    void RecoverHP()
     {
-        experience += amount;
-        LevelUpChecker();
+        if (currentRecovery > 0 && currentHealth < maxHealth)
+        {
+            currentHealth += currentRecovery * Time.deltaTime;
+            currentHealth = Mathf.Min(currentHealth, maxHealth);
+        }
     }
 
-    void LevelUpChecker()
+    void CheckLevelUp()
     {
         if (experience >= experienceCap)
         {
@@ -90,84 +100,69 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        if (invulnerable) return;
 
-        if (!isInvincible)
+        currentHealth -= dmg;
+        if (currentHealth <= 0)
         {
-            currentHealth -= dmg;
-
-            invincibilityTimer = invincibilityDuration;
-            isInvincible = true;
-            if (currentHealth <= 0)
-            {
-                Kill();
-            }
+            currentHealth = 0;
+            Die();
+            return;
         }
+
+        StartCoroutine(InvulnerabilityFrames());
     }
 
-    public void Kill()
+
+
+    void Die()
     {
-        Debug.Log("Player Died");
-        FindObjectOfType<PlayerMovement>().alive = false;
+        if (!alive) return;
+        alive = false;
 
+        pm.Die(); 
+
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.updateMode = AnimatorUpdateMode.UnscaledTime; 
+        anim.Play("Player_Death", 0, 0f); 
+
+        StartCoroutine(DeathSequence());
     }
 
 
 
 
-    public void RestoreHealth(float amount)
+
+
+
+    IEnumerator DeathSequence()
     {
-        if (currentHealth < characterData.MaxHealth)
-        {
-            currentHealth += amount;
+        Animator anim = GetComponentInChildren<Animator>();
 
-            if (currentHealth > characterData.MaxHealth)
-            {
-                currentHealth = characterData.MaxHealth;
-            }
-        }
+        anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+        anim.SetBool("Alive", false);
+        anim.Play("Player_Death", 0, 0f); 
+
+        yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        Time.timeScale = 0f;
+
     }
 
-    void Recover()
+
+
+
+
+    public void IncreaseExperience(int amount) => experience += amount;
+    public void AddKill() => kills++;
+
+    System.Collections.IEnumerator InvulnerabilityFrames()
     {
-        if (currentHealth < characterData.MaxHealth)
-        {
-            currentHealth += currentRecovery * Time.deltaTime;
-
-            if (currentHealth > characterData.MaxHealth)
-            {
-                currentHealth = characterData.MaxHealth;
-            }
-        }
+        invulnerable = true;
+        yield return new WaitForSeconds(invulnDuration);
+        invulnerable = false;
     }
 
-    public void SpawnWeapon(GameObject weapon)
-    {
-        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
-        spawnedWeapon.transform.SetParent(transform);
-        spawnedWeapons.Add(spawnedWeapon);
-
-    }
-
-    [Header("Gameplay Stats")]
-    public int kills = 0;
-
-    public void AddKill()
-    {
-        kills++;
-    }
-
-
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public float GetMaxHealth()
-    {
-        return characterData.MaxHealth;
-    }
-
-
-    
 
 }

@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class KnifeController : WeaponController
 {
-    [Header("Knife Audio")]
-    public AudioClip knifeThrowSound;
+    public AudioSource audioSource;   
+    public AudioClip attackClip;      
+
+    protected override void Start()
+    {
+        base.Start();
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     protected override void Attack()
     {
-        base.Attack();
+        if (pm == null) pm = FindObjectOfType<PlayerMovement>();
+        Vector2 dir = pm.LastAimDir;
 
-        GameObject spawnedKnife = Instantiate(weaponData.Prefab);
-        spawnedKnife.transform.position = transform.position;
-        spawnedKnife.GetComponent<KnifeBehaviour>().DirectionChecker(pm.lastMovedVector);
+        GameObject knife = Instantiate(weaponData.Prefab, transform.position, Quaternion.identity);
+        knife.GetComponent<KnifeBehaviour>().Initialize(weaponData.Damage, dir, weaponData.Speed); 
 
-        if (knifeThrowSound != null)
-            AudioSource.PlayClipAtPoint(knifeThrowSound, transform.position);
+        if (attackClip != null) audioSource.PlayOneShot(attackClip, 0.35f);
     }
+
+
 }
-    

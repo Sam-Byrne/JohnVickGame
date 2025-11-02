@@ -1,39 +1,16 @@
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "CharacterScriptableObject", menuName = "ScriptableObjects/Character")]
+[CreateAssetMenu(fileName = "New Character", menuName = "ScriptableObjects/Character")]
 public class CharacterScriptableObject : ScriptableObject
 {
-    [SerializeField]
-    GameObject startingWeapon;
-    public GameObject StartingWeapon { get => startingWeapon; private set => startingWeapon = value; }
+    [Header("Character Base Stats")]
+    public float MaxHealth;
+    public float Damage;
+    public float ProjectileSpeed;
+    public float Recovery;
+    public float Magnet;
+    public float MoveSpeed;
 
-
-    [SerializeField]
-    float maxHealth;
-    public float MaxHealth { get => maxHealth; private set => maxHealth = value; }
-
-
-    [SerializeField]
-    float recovery;
-    public float Recovery { get => recovery; private set => recovery = value; }
-
-
-
-    [SerializeField]
-    float damage;
-    public float Damage { get => damage; private set => damage = value; }
-
-
-
-    [SerializeField]
-    float projectileSpeed;
-    public float ProjectileSpeed { get => projectileSpeed; private set => projectileSpeed = value; }
-
-
-
-    [SerializeField]
-    float magnet;
-    public float Magnet { get => magnet; private set => magnet = value; }
-
+    [Header("Starting Weapon")]
+    public WeaponController StartingWeapon;
 }

@@ -4,68 +4,49 @@ using TMPro;
 
 public class HUDController : MonoBehaviour
 {
-    [Header("References")]
-    public PlayerStats playerStats;     // assign in Inspector
-
-    [Header("UI Elements")]
+    public PlayerStats player;
     public Slider healthBar;
-    public TextMeshProUGUI healthText;
     public Slider xpBar;
+
+    public TextMeshProUGUI healthText;
     public TextMeshProUGUI levelText;
-    public TextMeshProUGUI timerText;
     public TextMeshProUGUI killText;
-    public Image damageVignette;
+    public TextMeshProUGUI timerText;
+
+    public Image damageVignette; 
 
 
-    private float timer = 0f;
+    float timer;
 
-    void Start()
+    void OnEnable()
     {
-        if (playerStats == null)
-            playerStats = FindObjectOfType<PlayerStats>();
-
-        // Initialize
-        healthBar.value = 1;
-        xpBar.value = 0;
-        levelText.text = "LvL 1";
-        timerText.text = "00:00";
-        killText.text = "Kills: 0";
-        healthText.text = "0 / 0";
+        if (player == null)
+            player = FindObjectOfType<PlayerStats>();
     }
+
 
     void Update()
     {
-        if (playerStats == null) return;
+        healthBar.maxValue = player.maxHealth;
+        healthBar.value = player.currentHealth;
+        healthText.text = $"{(int)player.currentHealth}/{(int)player.maxHealth}";
 
+        xpBar.maxValue = player.experienceCap;
+        xpBar.value = player.experience;
+
+        levelText.text = "LV " + player.level;
+        killText.text = player.kills.ToString();
 
         timer += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(timer / 60);
-        int seconds = Mathf.FloorToInt(timer % 60);
-        timerText.text = $"{minutes:00}:{seconds:00}";
+        timerText.text = $"{(int)(timer / 60):00}:{(int)(timer % 60):00}";
+
+        float healthPercent = player.currentHealth / player.maxHealth;
+        float targetAlpha = Mathf.Lerp(0f, 0.95f, 1f - healthPercent);
+
+        Color c = damageVignette.color;
+        c.a = Mathf.Lerp(c.a, targetAlpha, Time.deltaTime * 5f);
+        damageVignette.color = c;
 
 
-        float currentHP = playerStats.GetCurrentHealth();
-        float maxHP = playerStats.GetMaxHealth();
-        float healthPercent = Mathf.Clamp01( + currentHP / maxHP);
-
-        healthBar.value = healthPercent;
-        healthText.text = $"{Mathf.CeilToInt(currentHP)} / {Mathf.CeilToInt(maxHP)}";
-
-        Color vignetteColor = damageVignette.color;
-        float targetAlpha = Mathf.Lerp(2f, 0f, healthPercent); 
-        vignetteColor.a = Mathf.Lerp(vignetteColor.a, targetAlpha, Time.deltaTime * 5f);
-        damageVignette.color = vignetteColor;
-
-        
-
-
-
-        xpBar.value = (float)playerStats.experience / playerStats.experienceCap;
-
-
-        levelText.text = $"Lv {playerStats.level}";
-
-
-        killText.text = $"Kills: {playerStats.kills}";
     }
 }

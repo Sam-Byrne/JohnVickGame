@@ -1,18 +1,32 @@
 using UnityEngine;
 
-public class KnifeBehaviour : ProjectileWeaponBehaviour
+public class KnifeBehaviour : MonoBehaviour
 {
+    float damage;
+    Vector2 direction;
+    float moveSpeed; 
 
-    protected override void Start()
+    public void Initialize(float dmg, Vector2 dir, float speed)
     {
-        base.Start();
-  
+        damage = dmg;
+        direction = dir.normalized;
+        moveSpeed = speed;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle - 45f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position += direction * currentSpeed * Time.deltaTime;
-        
+        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.TryGetComponent(out EnemyStats enemy))
+        {
+            enemy.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

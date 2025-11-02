@@ -163868,13 +163868,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdb5760b2a15104391476dde4bfd3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDController
-  playerStats: {fileID: 3218154727057269071}
+  player: {fileID: 3218154727057269073}
   healthBar: {fileID: 205269907}
-  healthText: {fileID: 391671382}
   xpBar: {fileID: 1593260725}
+  healthText: {fileID: 391671382}
   levelText: {fileID: 1915817}
-  timerText: {fileID: 1553485295}
   killText: {fileID: 482842375}
+  timerText: {fileID: 1553485295}
   damageVignette: {fileID: 1736713692}
 --- !u!114 &1779392219
 MonoBehaviour:
@@ -163962,11 +163962,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1783855052 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 17565004909549226, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
-  m_PrefabInstance: {fileID: 3035814987699499397}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1832770708
 GameObject:
   m_ObjectHideFlags: 0
@@ -164858,18 +164853,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: John
       objectReference: {fileID: 0}
+    - target: {fileID: 2425791000582284046, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: characterData
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: cc3c030586dde7c42af252a3c800cdc8, type: 2}
     - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: experienceCap
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: invulnDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: experienceCapIncrease
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4110270944804374705, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110270944804374705, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110270944804374705, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280561077950497377, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: alive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280561077950497377, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 3218154727057269074}
     - target: {fileID: 5157183996273315947, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -164912,7 +164935,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5351915164834745257, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522653412015904529, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -164922,10 +164949,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5157183996273315947, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 817672938}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 17565004909549226, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3218154727057269072}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
 --- !u!1001 &3175904128666931170
 PrefabInstance:
@@ -164989,53 +165013,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5157183996273315947, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
   m_PrefabInstance: {fileID: 3035814987699499397}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3218154727057269071 stripped
+--- !u!114 &3218154727057269073 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
   m_PrefabInstance: {fileID: 3035814987699499397}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783855052}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54d4d43d4c3c8174d8fd28ee70372067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
---- !u!58 &3218154727057269072
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!212 &3218154727057269074 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4054367856885721713, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
+  m_PrefabInstance: {fileID: 3035814987699499397}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783855052}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.9
 --- !u!1001 &8908604506160357787
 PrefabInstance:
   m_ObjectHideFlags: 0

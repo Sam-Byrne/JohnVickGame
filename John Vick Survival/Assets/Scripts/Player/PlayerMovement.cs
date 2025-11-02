@@ -2,75 +2,71 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
-    float speedX, speedY;
-    Rigidbody2D rb;
-    Vector2 moveDir;
-    public Vector2 MoveDir => moveDir;
+    public float moveSpeed = 3.5f;
     public Animator animator;
-    int direction = 1;
-    PlayerMovement pm;
-    public float lastHorizontalVector;
-    public float lastVerticalVector;
-    public Vector2 lastMovedVector;
-    public bool alive;
+    public SpriteRenderer spriteRenderer;
 
-    public CharacterScriptableObject characterData;
+    Rigidbody2D rb;
+    Vector2 moveInput;
+
+    public Vector2 LastAimDir { get; private set; } = Vector2.right;
+
+    public bool alive = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        pm = GetComponent<PlayerMovement>();
-        lastMovedVector = new Vector2(1, 0f);
-        alive = true;
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
     }
-
 
     void Update()
-    {
-        if (alive == true)
+    {   
+        if (!alive)
         {
-
-            speedX = Input.GetAxisRaw("Horizontal");
-            speedY = Input.GetAxisRaw("Vertical");
-            moveDir = new Vector2(speedX, speedY).normalized; // Update moveDir here
-            rb.linearVelocity = moveDir * moveSpeed; // Use rb.velocity instead of rb.linearVelocity
-
-            animator.SetFloat("Horizontal", speedX);
-            animator.SetFloat("Vertical", speedY);
-            animator.SetFloat("Speed", speedX);
-            animator.SetInteger("Direction", direction);
-        }
-        else if (alive == false)
-        {
-            animator.SetBool("Alive",  false);
+            animator.SetBool("Alive", false);
+            rb.linearVelocity = Vector2.zero;
+            return;
         }
 
-        if (moveDir.x != 0)
-        {
-            lastHorizontalVector = moveDir.x;
-            lastMovedVector = new Vector2(lastHorizontalVector, 0f);
-        }
-
-        if (moveDir.y != 0)
-        {
-            lastVerticalVector = moveDir.y;
-            lastMovedVector = new Vector2(0f, lastVerticalVector);
-        }
-
-        if (moveDir.x !=0 && moveDir.y !=0)
-        {
-            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);
-        }
         
-        if (speedX > 0)
-        {
-            direction = 1;
-        }
-        else if (speedX < 0)
-        {
-            direction = -1;
-        }
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        moveInput = moveInput.normalized;
+        rb.linearVelocity = moveInput * moveSpeed;
+
+       
+        animator.SetFloat("Speed", rb.linearVelocity.sqrMagnitude);
+
         
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            LastAimDir = QuantizeTo8(moveInput);
+        }
+
+        // Flip sprite by facing (based on last aim)
+        if (LastAimDir.x > 0.01f)  spriteRenderer.flipX = false;
+        if (LastAimDir.x < -0.01f) spriteRenderer.flipX = true;
     }
+
+    
+    Vector2 QuantizeTo8(Vector2 v)
+    {
+        if (v.sqrMagnitude < 0.0001f) return LastAimDir;
+
+        float a = Mathf.Atan2(v.y, v.x);                 
+        float sector = Mathf.Round(a / (Mathf.PI / 4f)); 
+        float snapped = sector * (Mathf.PI / 4f);
+
+        return new Vector2(Mathf.Cos(snapped), Mathf.Sin(snapped)).normalized;
+    }
+
+
+    public void Die()
+    {
+        alive = false;
+        rb.linearVelocity = Vector2.zero;
+        animator.SetBool("Alive", false);
+    }
+
+
 }
