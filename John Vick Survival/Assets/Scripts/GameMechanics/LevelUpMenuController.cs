@@ -21,25 +21,29 @@ public class LevelUpMenuController : MonoBehaviour
     void ShowMenu()
     {
         gameObject.SetActive(true);
+        Time.timeScale = 0f;
 
-        
-        option1Text.text = "Upgrade A";
-        option2Text.text = "Upgrade B";
-        option3Text.text = "Upgrade C";
+        var upgrades = UpgradeManager.instance.GetUpgradeChoices();
 
-        
+        // Display correct text
+        option1Text.text = upgrades[0].text;
+        option2Text.text = upgrades[1].text;
+        option3Text.text = upgrades[2].text;
+
+        // Remove old listeners
         option1.onClick.RemoveAllListeners();
         option2.onClick.RemoveAllListeners();
         option3.onClick.RemoveAllListeners();
 
-
-        option1.onClick.AddListener(() => ChooseUpgrade());
-        option2.onClick.AddListener(() => ChooseUpgrade());
-        option3.onClick.AddListener(() => ChooseUpgrade());
+        // Link correct actions
+        option1.onClick.AddListener(() => ApplyUpgrade(upgrades[0]));
+        option2.onClick.AddListener(() => ApplyUpgrade(upgrades[1]));
+        option3.onClick.AddListener(() => ApplyUpgrade(upgrades[2]));
     }
 
-    void ChooseUpgrade()
+    void ApplyUpgrade(UpgradeOption upgrade)
     {
+        upgrade.apply.Invoke();
         gameObject.SetActive(false);
         Time.timeScale = 1f;
     }

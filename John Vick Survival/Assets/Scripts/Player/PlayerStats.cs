@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 public class PlayerStats : MonoBehaviour
 {
     public static Action OnLevelUpUI;
@@ -16,6 +17,8 @@ public class PlayerStats : MonoBehaviour
     public float currentProjectileSpeed;
     public float currentRecovery;
     public float currentMagnet;
+
+    public List<GameObject> spawnedWeapons = new List<GameObject>();
 
     public int level = 1;
     public int experience = 0;
@@ -38,9 +41,9 @@ public class PlayerStats : MonoBehaviour
 
 
     public bool alive = true;
-    PlayerMovement pm;              
+    PlayerMovement pm;
 
-    public GameObject PlayerDeathEffect; 
+    public GameObject PlayerDeathEffect;
 
 
 
@@ -48,7 +51,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        pm = GetComponent<PlayerMovement>();   
+        pm = GetComponent<PlayerMovement>();
     }
 
 
@@ -80,7 +83,11 @@ public class PlayerStats : MonoBehaviour
 
 
         if (characterData.StartingWeapon != null)
-            Instantiate(characterData.StartingWeapon, transform);
+        {
+            GameObject w = Instantiate(characterData.StartingWeapon, transform).gameObject;
+            spawnedWeapons.Add(w);
+        }
+
     }
 
     void Update()
@@ -129,7 +136,7 @@ public class PlayerStats : MonoBehaviour
 
         HUDController hud = FindObjectOfType<HUDController>();
         if (hud != null) hud.FlashDamage();
-        
+
 
 
         if (currentHealth <= 0.99f)
@@ -149,7 +156,7 @@ public class PlayerStats : MonoBehaviour
         if (pm != null) pm.enabled = false;
 
         if (sfxSource && deathSFX)
-        sfxSource.PlayOneShot(deathSFX);
+            sfxSource.PlayOneShot(deathSFX);
 
         Instantiate(PlayerDeathEffect, transform.position, Quaternion.identity);
 
@@ -157,7 +164,7 @@ public class PlayerStats : MonoBehaviour
         Destroy(gameObject);
 
     }
-    
+
 
 
 
@@ -171,6 +178,29 @@ public class PlayerStats : MonoBehaviour
         yield return new WaitForSeconds(invulnDuration);
         invulnerable = false;
     }
+
+    public void GainMaxHealth(float amount)
+    {
+        maxHealth += amount;
+        currentHealth += amount * 0.3f; // small heal bonus when max health rises
+    }
+
+    public void GainDamage(float amount)
+    {
+        currentDamage += amount;
+    }
+
+    public void GainMagnet(float amount)
+    {
+        currentMagnet += amount;
+    }
+
+    public void GainProjectileSpeed(float amount)
+    {
+        currentProjectileSpeed += amount;
+    }
+
+
 
 
 }
