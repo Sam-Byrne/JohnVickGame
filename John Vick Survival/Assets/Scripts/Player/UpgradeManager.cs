@@ -70,8 +70,16 @@ public class UpgradeManager : MonoBehaviour
 
         // Pick 3 random upgrades
         List<UpgradeOption> selected = new List<UpgradeOption>();
-        for (int i = 0; i < 3; i++)
-            selected.Add(options[Random.Range(0, options.Count)]);
+        List<UpgradeOption> pool = new List<UpgradeOption>(options);
+
+        int numberToPick = Mathf.Min(3, pool.Count);
+
+        for (int i = 0; i < numberToPick; i++)
+        {
+            int index = Random.Range(0, pool.Count);
+            selected.Add(pool[index]);
+            pool.RemoveAt(index); // prevents duplicates
+        }
 
         return selected;
     }
