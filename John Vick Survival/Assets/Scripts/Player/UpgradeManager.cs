@@ -20,7 +20,11 @@ public class UpgradeManager : MonoBehaviour
     {
         List<UpgradeOption> options = new List<UpgradeOption>();
 
-        float healthAmount = Random.Range(10f, 35f);
+        float moveSpeedGain = Random.Range(0.15f, 0.50f); // between +0.15 and +0.50 move speed
+        options.Add(new UpgradeOption($"+{moveSpeedGain:F1} Move Speed", 
+            () => player.GainMoveSpeed(moveSpeedGain)));
+
+        float healthAmount = Random.Range(10f, 35f); // between 10 and 35 max health
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(healthAmount)} Max Health", 
             () => player.GainMaxHealth(healthAmount)));
             
@@ -29,8 +33,14 @@ public class UpgradeManager : MonoBehaviour
             () => player.GainDamage(player.currentDamage * damageAmount)));
 
         float magnetGain = Random.Range(0.1f, 0.35f); // 10%–35% more radius
-        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(magnetGain * 100)}% Magnet", 
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(magnetGain * 100)}% Magnet",
             () => player.GainMagnet(player.currentMagnet * magnetGain)));
+            
+        float atkSpdGain = Random.Range(0.05f, 0.25f); // 5%–25% faster attacks
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(atkSpdGain * 100)}% Attack Speed",
+            () => player.GainAttackSpeed(atkSpdGain)));
+
+
 
         float projectileGain = Random.Range(0.10f, 0.40f); // 10–40% faster
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(projectileGain * 100)}% Projectile Speed", 

@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     public CharacterScriptableObject characterData;
 
     [Header("Runtime Stats")]
+    public float attackSpeedMultiplier = 1f;
     public float maxHealth;
     public float currentHealth;
     public float currentDamage;
@@ -71,6 +72,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         // runtime stat stuff
+
         maxHealth = characterData.MaxHealth;
         currentHealth = maxHealth;
         currentDamage = characterData.Damage;
@@ -182,7 +184,7 @@ public class PlayerStats : MonoBehaviour
     public void GainMaxHealth(float amount)
     {
         maxHealth += amount;
-        currentHealth += amount * 0.3f; // small heal bonus when max health rises
+        currentHealth += amount * 0.4f; // small heal bonus when max health rises
     }
 
     public void GainDamage(float amount)
@@ -199,6 +201,18 @@ public class PlayerStats : MonoBehaviour
     {
         currentProjectileSpeed += amount;
     }
+
+    public void GainMoveSpeed(float amount)
+    {
+        PlayerMovement pm = GetComponent<PlayerMovement>();
+        pm.moveSpeed += amount;
+    }
+
+    public void GainAttackSpeed(float percentIncrease)
+    {
+        attackSpeedMultiplier += percentIncrease;
+    }
+
 
 
 

@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        cooldownTimer -= Time.deltaTime;
+        cooldownTimer -= Time.deltaTime * FindObjectOfType<PlayerStats>().attackSpeedMultiplier;
         if (cooldownTimer <= 0f)
         {
             Attack();
