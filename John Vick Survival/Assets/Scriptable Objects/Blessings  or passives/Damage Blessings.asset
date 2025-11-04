@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24ae30f8e23e824cb25503b6a882b91, type: 3}
+  m_Name: Damage Blessings
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveItemScriptableObject
+  itemName: Damage Blessing
+  description: Your weapons have been blessed by the divine, allowing you to cut
+    through the horde quicker.
+  icon: {fileID: 21300000, guid: ecd405cee8c8a174f99f9e31b6393b07, type: 3}
+  passiveType: 1
+  upgradeValues:
+  - 15
+  - 20
+  - 20
+  - 35
+  - 50
+  - 75

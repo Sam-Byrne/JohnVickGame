@@ -10,6 +10,10 @@ public class UpgradeManager : MonoBehaviour
     [Header("Weapons that can appear as unlocks")]
     public List<GameObject> unlockableWeapons;
 
+    [Header("Passive Items That Can Appear")]
+    public List<PassiveItemScriptableObject> passivePool;
+
+
     void Awake()
     {
         instance = this;
@@ -24,11 +28,11 @@ public class UpgradeManager : MonoBehaviour
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(moveSpeedGain * 100)}% Move Speed",
             () => player.GainMoveSpeed(moveSpeedGain)));
 
-        float healthAmount = Random.Range(10f, 75f); // between 10 and 75 max health
+        float healthAmount = Random.Range(10f, 45f); // between 10 and 45 max health
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(healthAmount)} Max Health",
             () => player.GainMaxHealth(healthAmount)));
 
-        float damageAmount = Random.Range(0.1f, 0.35f); // 10%–35% more damage
+        float damageAmount = Random.Range(0.1f, 0.25f); // 10%–25% more damage
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(damageAmount * 100)}% Damage",
             () => player.GainDamage(player.currentDamage * damageAmount)));
 
@@ -40,18 +44,35 @@ public class UpgradeManager : MonoBehaviour
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(atkSpdGain * 100)}% Attack Speed",
             () => player.GainAttackSpeed(atkSpdGain)));
 
-        float projectileGain = Random.Range(0.10f, 0.40f); // 10–40% faster
+        float projectileGain = Random.Range(0.10f, 0.50f); // 10–50% faster
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(projectileGain * 100)}% Projectile Speed",
             () => player.GainProjectileSpeed(player.currentProjectileSpeed * projectileGain)));
             
         float critChanceGain = Random.Range(0.05f, 0.10f); // +5% to +10%
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(critChanceGain * 100)}% Crit Chance",
             () => player.GainCritChance(critChanceGain)));
-    
-        float critDamageGain = Random.Range(0.1f, 0.5f); // +0.1x to +0.5x multiplier
+
+        float critDamageGain = Random.Range(0.1f, 0.3f); // +0.1x to +0.3x multiplier
         options.Add(new UpgradeOption($"+{critDamageGain:F1}x Crit Damage",
             () => player.GainCritDamage(critDamageGain)));
-    
+
+        foreach (var item in passivePool)
+        {
+            bool hasItem = player.passiveItems.Contains(item);
+
+            if (!hasItem && player.passiveItems.Count < player.maxPassiveSlots)
+            {
+               // Offer item at level 1
+                options.Add(new UpgradeOption($"{item.itemName} (New)", () => player.GainPassiveItem(item)));
+            }
+            else if (hasItem)
+            {
+                // Offer item level up
+                options.Add(new UpgradeOption($"{item.itemName} (Level Up)", () => player.GainPassiveItem(item)));
+            }
+        }
+
+
 
 
         foreach (var w in unlockableWeapons)

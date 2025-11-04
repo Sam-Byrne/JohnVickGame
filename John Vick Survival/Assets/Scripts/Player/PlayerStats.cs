@@ -32,8 +32,14 @@ public class PlayerStats : MonoBehaviour
     public bool invulnerable = false;
 
     [Header("Critical Stats")]
-    public float critChance = 0.01f;       
-    public float critDamage = 1.25f;    
+    public float critChance = 0.01f;
+    public float critDamage = 1.25f;
+
+
+    public List<PassiveItemScriptableObject> passiveItems = new List<PassiveItemScriptableObject>();
+    public int maxPassiveSlots = 3;
+
+
 
 
 
@@ -228,6 +234,58 @@ public class PlayerStats : MonoBehaviour
     public void GainCritDamage(float amount)
     {
         critDamage += amount;
+    }
+
+
+    //passive item stuff
+    public void ApplyPassiveEffect(PassiveItemScriptableObject item, int level)
+    {
+        float value = item.upgradeValues[Mathf.Clamp(level, 0, item.upgradeValues.Length - 1)];
+
+        switch (item.passiveType)
+        {
+            case PassiveItemScriptableObject.PassiveType.MaxHealth:
+                GainMaxHealth(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.Damage:
+                GainDamage(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.MoveSpeed:
+                GainMoveSpeed(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.AttackSpeed:
+                GainAttackSpeed(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.CritChance:
+                GainCritChance(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.CritDamage:
+                GainCritDamage(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.Magnet:
+                GainMagnet(value);
+                break;
+        }
+    }
+
+    private Dictionary<PassiveItemScriptableObject, int> passiveLevels = new Dictionary<PassiveItemScriptableObject, int>();
+    public void GainPassiveItem(PassiveItemScriptableObject item)
+    {
+        if (!passiveLevels.ContainsKey(item))
+        {
+            passiveLevels[item] = 0;
+            passiveItems.Add(item);
+        }
+
+        int level = passiveLevels[item];
+        ApplyPassiveEffect(item, level);
+        passiveLevels[item]++;
     }
 
 
