@@ -81,6 +81,13 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage);
+            float dmg = currentDamage;
+            PlayerStats p = FindObjectOfType<PlayerStats>();
+            if (Random.value <= p.critChance)
+                dmg *= p.critDamage;
+            enemy.TakeDamage(dmg);
+
+
             ReducePierce();
         }
 

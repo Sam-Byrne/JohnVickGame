@@ -20,31 +20,38 @@ public class UpgradeManager : MonoBehaviour
     {
         List<UpgradeOption> options = new List<UpgradeOption>();
 
-        float moveSpeedGain = Random.Range(0.15f, 0.50f); // between +0.15 and +0.50 move speed
-        options.Add(new UpgradeOption($"+{moveSpeedGain:F1} Move Speed", 
+        float moveSpeedGain = Random.Range(0.15f, 0.30f); // between +0.15 and +0.30 move speed
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(moveSpeedGain * 100)}% Move Speed",
             () => player.GainMoveSpeed(moveSpeedGain)));
 
-        float healthAmount = Random.Range(10f, 35f); // between 10 and 35 max health
-        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(healthAmount)} Max Health", 
+        float healthAmount = Random.Range(10f, 75f); // between 10 and 75 max health
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(healthAmount)} Max Health",
             () => player.GainMaxHealth(healthAmount)));
-            
-        float damageAmount = Random.Range(0.1f, 0.65f); // 10%–65% more damage
-        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(damageAmount * 100)}% Damage", 
+
+        float damageAmount = Random.Range(0.1f, 0.35f); // 10%–35% more damage
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(damageAmount * 100)}% Damage",
             () => player.GainDamage(player.currentDamage * damageAmount)));
 
         float magnetGain = Random.Range(0.1f, 0.35f); // 10%–35% more radius
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(magnetGain * 100)}% Magnet",
             () => player.GainMagnet(player.currentMagnet * magnetGain)));
-            
-        float atkSpdGain = Random.Range(0.05f, 0.25f); // 5%–25% faster attacks
+
+        float atkSpdGain = Random.Range(0.05f, 0.20f); // 5%–20% faster attacks
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(atkSpdGain * 100)}% Attack Speed",
             () => player.GainAttackSpeed(atkSpdGain)));
 
-
-
         float projectileGain = Random.Range(0.10f, 0.40f); // 10–40% faster
-        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(projectileGain * 100)}% Projectile Speed", 
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(projectileGain * 100)}% Projectile Speed",
             () => player.GainProjectileSpeed(player.currentProjectileSpeed * projectileGain)));
+            
+        float critChanceGain = Random.Range(0.05f, 0.10f); // +5% to +10%
+        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(critChanceGain * 100)}% Crit Chance",
+            () => player.GainCritChance(critChanceGain)));
+    
+        float critDamageGain = Random.Range(0.1f, 0.5f); // +0.1x to +0.5x multiplier
+        options.Add(new UpgradeOption($"+{critDamageGain:F1}x Crit Damage",
+            () => player.GainCritDamage(critDamageGain)));
+    
 
 
         foreach (var w in unlockableWeapons)

@@ -31,6 +31,12 @@ public class PlayerStats : MonoBehaviour
     private float invulnTimer = 0f;
     public bool invulnerable = false;
 
+    [Header("Critical Stats")]
+    public float critChance = 0.01f;       
+    public float critDamage = 1.25f;    
+
+
+
     [Header("Audio")]
     public AudioSource sfxSource;               // assign in inspector
     public AudioClip damageSFX;                 // plays on every hit
@@ -211,6 +217,17 @@ public class PlayerStats : MonoBehaviour
     public void GainAttackSpeed(float percentIncrease)
     {
         attackSpeedMultiplier += percentIncrease;
+    }
+
+    public void GainCritChance(float amount)
+    {
+        critChance += amount;
+        critChance = Mathf.Clamp(critChance, 0f, 1f);
+    }
+
+    public void GainCritDamage(float amount)
+    {
+        critDamage += amount;
     }
 
 
