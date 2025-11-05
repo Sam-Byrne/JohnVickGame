@@ -9,7 +9,13 @@ public class EnemyStats : MonoBehaviour
     public AudioClip damageSound;
     public AudioClip deathSound;
     private AudioSource audioSource;
-    
+
+
+    [Header("Damage Popup")]
+    public GameObject damagePopupPrefab;
+
+
+
 
     // current stats
     public float currentMoveSpeed;
@@ -35,9 +41,22 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        bool crit = dmg > enemyData.Damage; 
+
         currentHealth -= dmg;
 
-        
+        // spawn damage popup
+        if (damagePopupPrefab != null)
+        {
+            var popup = Instantiate(
+                damagePopupPrefab,
+                transform.position + Vector3.up * 0.6f,
+                Quaternion.identity
+            );
+
+            popup.GetComponent<DamagePopup>().Setup(dmg, crit);
+        }
+
         if (damageSound != null)
             AudioSource.PlayClipAtPoint(damageSound, transform.position);
 
@@ -47,12 +66,14 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+
+
     public void Kill()
     {
         // play death sound before destroying
         if (deathSound != null)
             AudioSource.PlayClipAtPoint(damageSound, transform.position);
-            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         if (player != null)
         {
