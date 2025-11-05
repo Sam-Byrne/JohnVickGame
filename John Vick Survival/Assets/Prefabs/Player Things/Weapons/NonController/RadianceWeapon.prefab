@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: -173992893169957189, guid: 698aa80a5d4f39241ae2973888bdf715, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
+  m_Color: {r: 1, g: 0.7888672, b: 0, a: 0.5686275}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d155c7fa24044a740b4dde5f4a29cc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RadianceBehaviour
-  destroyAfterSeconds: 3
+  destroyAfterSeconds: 1.7
   weaponData: {fileID: 11400000, guid: c995f1c721559db4784a71c4da11f473, type: 2}
 --- !u!58 &5014148114432834196
 CircleCollider2D:

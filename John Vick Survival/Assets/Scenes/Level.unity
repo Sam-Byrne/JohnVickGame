@@ -162850,8 +162850,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 771.3, y: -420.8}
-  m_SizeDelta: {x: 345.0313, y: 121.787}
+  m_AnchoredPosition: {x: 771.3, y: -422.40958}
+  m_SizeDelta: {x: 345.0313, y: 125.0062}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &804587973
 MonoBehaviour:
@@ -162866,7 +162866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21509439, g: 0.21509439, b: 0.21509439, a: 1}
+  m_Color: {r: 0.21509439, g: 0.21509439, b: 0.21509439, a: 0.3647059}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -163554,14 +163554,14 @@ MonoBehaviour:
   - prefab: {fileID: 8893568915628671063, guid: 5a1739c9b8ced894c93e86c599bc0afa, type: 3}
     unlockTime: 0
   - prefab: {fileID: 8893568915628671063, guid: 5e14dbce9c856b24ba0e69bdedd9322a, type: 3}
-    unlockTime: 90
+    unlockTime: 125
   - prefab: {fileID: 8893568915628671063, guid: 2c0f0a9e06690cb4891b0fec38906afc, type: 3}
-    unlockTime: 150
+    unlockTime: 230
   player: {fileID: 3218154727057269069}
   spawnRadius: 11
   baseEnemyCount: 5
-  spawnInterval: 2
-  waveDelay: 10
+  spawnInterval: 1.2
+  waveDelay: 15
 --- !u!1 &1118850009
 GameObject:
   m_ObjectHideFlags: 0
