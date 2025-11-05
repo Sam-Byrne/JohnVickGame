@@ -14,7 +14,7 @@ public class PassiveItemScriptableObject : ScriptableObject
     public PassiveType passiveType;
 
     [Header("Upgrade Values Per Level")]
-    public float[] upgradeValues; // Example: { 0.10f, 0.15f, 0.20f }
+    public float[] upgradeValues; 
 
     public enum PassiveType
     {

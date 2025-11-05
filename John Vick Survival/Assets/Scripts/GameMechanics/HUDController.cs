@@ -19,6 +19,9 @@ public class HUDController : MonoBehaviour
 
     public Image damageVignette;
 
+    [Header("Blessing HUD")]
+    public Transform passiveItemBar;
+    public GameObject passiveItemSlotPrefab;
 
     float timer;
 
@@ -63,7 +66,7 @@ public class HUDController : MonoBehaviour
     IEnumerator DamageFlashRoutine()
     {
         Color c = damageFlash.color;
-        c.a = 0.8f; 
+        c.a = 0.8f;
         damageFlash.color = c;
 
         float t = 0f;
@@ -75,6 +78,25 @@ public class HUDController : MonoBehaviour
             yield return null;
         }
     }
+
+
+    public void RefreshPassiveHUD(PlayerStats player)
+    {
+        foreach (Transform child in passiveItemBar)
+            Destroy(child.gameObject);
+
+        foreach (var item in player.passiveItems)
+        {
+            var slot = Instantiate(passiveItemSlotPrefab, passiveItemBar);
+            slot.GetComponent<Image>().sprite = item.icon;
+
+            int level = player.GetPassiveLevel(item);
+
+            TextMeshProUGUI lvlText = slot.GetComponentInChildren<TextMeshProUGUI>();
+            lvlText.text = level.ToString();
+        }
+    }
+
 
 
 

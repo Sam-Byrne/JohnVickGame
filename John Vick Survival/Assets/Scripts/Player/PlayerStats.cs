@@ -279,14 +279,28 @@ public class PlayerStats : MonoBehaviour
     {
         if (!passiveLevels.ContainsKey(item))
         {
-            passiveLevels[item] = 0;
+            passiveLevels[item] = 1;
             passiveItems.Add(item);
         }
+        else
+        {
+            passiveLevels[item]++;
+        }
 
-        int level = passiveLevels[item];
-        ApplyPassiveEffect(item, level);
-        passiveLevels[item]++;
+        ApplyPassiveEffect(item, passiveLevels[item] - 1);
+
+        FindObjectOfType<HUDController>().RefreshPassiveHUD(this);
     }
+
+    public int GetPassiveLevel(PassiveItemScriptableObject item)
+    {
+        if (passiveLevels.ContainsKey(item))
+            return passiveLevels[item];
+
+        return 0;
+    }
+
+
 
 
 

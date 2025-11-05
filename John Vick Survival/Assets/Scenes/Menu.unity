@@ -380,13 +380,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1558295926}
-  menuMusic: {fileID: 8300000, guid: b6747facd0e4b394aa72eed28b3fba30, type: 3}
+  menuMusic: {fileID: 8300000, guid: 6727f291b768d974ea027e38e4d6c4c8, type: 3}
   levelMusic:
-  - {fileID: 8300000, guid: 4ceb1eb4cd84f0f418246c0056921f25, type: 3}
-  - {fileID: 8300000, guid: e24a4883badb8ec4a807a6fb8d54f8e5, type: 3}
-  - {fileID: 8300000, guid: 6e0c6f831ea260644bd66c84efd5d961, type: 3}
-  - {fileID: 8300000, guid: b373ced010a27bd4592281abc3c62ca3, type: 3}
-  - {fileID: 8300000, guid: e599ca08b58fb62428a463d37a287265, type: 3}
+  - {fileID: 8300000, guid: a76429ea276a51e44a11c05331b5e622, type: 3}
+  - {fileID: 8300000, guid: 8bc31e437e438fe4aa6e188ac0854d9e, type: 3}
+  - {fileID: 8300000, guid: bdd1a80c537e96847b5156349918ddcc, type: 3}
+  - {fileID: 8300000, guid: 71148d70eab4f5d4d8b4f408e5d2c355, type: 3}
+  - {fileID: 8300000, guid: f5ac44cccf33d0e45ae5399a063cea94, type: 3}
 --- !u!114 &173372951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,7 +1194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &921632223
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,7 +1880,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.127
+  m_Volume: 0.402
   m_Pitch: 1
   Loop: 0
   Mute: 0
