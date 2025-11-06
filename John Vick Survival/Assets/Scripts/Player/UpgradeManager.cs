@@ -32,9 +32,11 @@ public class UpgradeManager : MonoBehaviour
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(healthAmount)} Max Health",
             () => player.GainMaxHealth(healthAmount)));
 
-        float damageAmount = Random.Range(0.1f, 0.25f); // 10%–25% more damage
-        options.Add(new UpgradeOption($"+{Mathf.RoundToInt(damageAmount * 100)}% Damage",
-            () => player.GainDamage(player.currentDamage * damageAmount)));
+        float damageAmount = Random.Range(0.10f, 0.25f); // +10% to +25%
+        options.Add(new UpgradeOption(
+            $"+{Mathf.RoundToInt(damageAmount * 100)}% Damage",
+            () => player.GainDamagePercent(damageAmount)
+        ));
 
         float magnetGain = Random.Range(0.1f, 0.35f); // 10%–35% more radius
         options.Add(new UpgradeOption($"+{Mathf.RoundToInt(magnetGain * 100)}% Magnet",

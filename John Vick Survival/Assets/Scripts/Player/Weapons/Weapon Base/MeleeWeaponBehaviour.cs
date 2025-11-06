@@ -15,7 +15,18 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         currentSpeed = weaponData.Speed;
         currentCooldownDuration = weaponData.CooldownDuration;
         currentPierce = weaponData.Pierce;
+
+        // NEW: fold in player runtime bonuses
+        var p = FindObjectOfType<PlayerStats>();
+        if (p != null)
+        {
+            currentDamage += p.currentDamage;
+            // speed rarely matters for a melee hitbox, but keep parity:
+            currentSpeed += p.currentProjectileSpeed;
+        }
     }
+
+
 
     protected virtual void Start()
     {
@@ -27,13 +38,17 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            float dmg = currentDamage;
             PlayerStats p = FindObjectOfType<PlayerStats>();
-            if (Random.value <= p.critChance)
-                dmg *= p.critDamage;
+
+            float dmg = currentDamage;                 
+            if (p != null) dmg *= p.damageMultiplier;  
+
+            if (p != null && Random.value <= p.critChance)
+                dmg *= p.critDamage;                   
+
             enemy.TakeDamage(dmg);
-
-
         }
     }
+
+
 }

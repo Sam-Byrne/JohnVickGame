@@ -19,6 +19,15 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         currentSpeed = weaponData.Speed;
         currentCooldownDuration = weaponData.CooldownDuration;
         currentPierce = weaponData.Pierce;
+
+        // NEW: fold in player runtime bonuses
+        var p = FindObjectOfType<PlayerStats>();
+        if (p != null)
+        {
+            currentDamage += p.currentDamage;
+            currentSpeed += p.currentProjectileSpeed;
+            // crit is already handled per-hit below; no change needed here
+        }
     }
     protected virtual void Start()
     {
@@ -80,22 +89,22 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            float dmg = currentDamage;
             PlayerStats p = FindObjectOfType<PlayerStats>();
-            if (Random.value <= p.critChance)
-                dmg *= p.critDamage;
+
+            float dmg = currentDamage;                  
+            if (p != null) dmg *= p.damageMultiplier;   
+
+            if (p != null && Random.value <= p.critChance)
+            dmg *= p.critDamage;                    
+
             enemy.TakeDamage(dmg);
-
-
             ReducePierce();
         }
-
-        
     }
-    
+
     void ReducePierce()
     {
-        currentPierce --;
+        currentPierce--;
         if (currentPierce <= 0)
         {
             Destroy(gameObject);

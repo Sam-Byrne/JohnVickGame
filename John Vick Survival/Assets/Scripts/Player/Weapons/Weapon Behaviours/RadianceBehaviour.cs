@@ -17,10 +17,21 @@ public class RadianceBehaviour : MeleeWeaponBehaviour
     {
         if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
         {
-            EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage);
+            var enemy = col.GetComponent<EnemyStats>();
+            var p = FindObjectOfType<PlayerStats>();
+
+            float dmg = currentDamage;
+            if (p != null) dmg *= p.damageMultiplier;
+            if (p != null && Random.value <= p.critChance)
+                dmg *= p.critDamage;
+
+            enemy.TakeDamage(dmg);
             markedEnemies.Add(col.gameObject);
         }
     }
+
+
+
+
 
 }

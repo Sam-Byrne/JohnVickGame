@@ -282,6 +282,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 28fc10eea6e8d4d41b0c9362a8e00dba, type: 2}
   damageSound: {fileID: 8300000, guid: afc979cf8a792434db83d110f247d2bd, type: 3}
   deathSound: {fileID: 8300000, guid: 117936684ef405343887a514dcae30a8, type: 3}
+  damagePopupPrefab: {fileID: 1314272845529595638, guid: 5c09e8766f1931045be1699137afa2f1, type: 3}
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0

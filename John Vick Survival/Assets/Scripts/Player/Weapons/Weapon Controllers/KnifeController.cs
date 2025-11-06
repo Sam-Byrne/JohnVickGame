@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class KnifeController : WeaponController
 {
-    public AudioSource audioSource;   
-    public AudioClip attackClip;      
+    public AudioSource audioSource;
+    public AudioClip attackClip;
 
     protected override void Start()
     {
@@ -17,11 +17,16 @@ public class KnifeController : WeaponController
         if (pm == null) pm = FindObjectOfType<PlayerMovement>();
         Vector2 dir = pm.LastAimDir;
 
+        var p = FindObjectOfType<PlayerStats>();
+        float speed = weaponData.Speed + (p != null ? p.currentProjectileSpeed : 0f);
+
         GameObject knife = Instantiate(weaponData.Prefab, transform.position, Quaternion.identity);
-        knife.GetComponent<KnifeBehaviour>().Initialize(weaponData.Damage, dir, weaponData.Speed); 
+        knife.GetComponent<KnifeBehaviour>().Initialize(weaponData.Damage, dir, speed);
 
         if (attackClip != null) audioSource.PlayOneShot(attackClip, 0.35f);
     }
+
+
 
 
 }

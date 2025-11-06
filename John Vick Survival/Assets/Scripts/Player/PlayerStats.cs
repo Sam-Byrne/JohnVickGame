@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     public float currentProjectileSpeed;
     public float currentRecovery;
     public float currentMagnet;
+    public float damageMultiplier = 1f;
 
     public List<GameObject> spawnedWeapons = new List<GameObject>();
 
@@ -196,13 +197,20 @@ public class PlayerStats : MonoBehaviour
     public void GainMaxHealth(float amount)
     {
         maxHealth += amount;
-        currentHealth += amount * 0.4f; // small heal bonus when max health rises
+        currentHealth += amount * 0.5f; // small heal bonus when max health rises
     }
 
     public void GainDamage(float amount)
     {
         currentDamage += amount;
     }
+    public void GainDamagePercent(float percentIncrease)
+    {
+    
+        damageMultiplier += percentIncrease;
+    }
+
+
 
     public void GainMagnet(float amount)
     {

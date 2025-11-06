@@ -15,7 +15,7 @@ public class KnifeBehaviour : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle - 45f);
     }
-    
+
     void Start()
     {
         Destroy(gameObject, 6f); // destroy after 6 seconds if nothing hits
@@ -32,13 +32,22 @@ public class KnifeBehaviour : MonoBehaviour
     {
         if (col.TryGetComponent(out EnemyStats enemy))
         {
-            enemy.TakeDamage(damage);
+            var p = FindObjectOfType<PlayerStats>();
+
+            float finalDamage = damage;                 
+            if (p != null) finalDamage *= p.damageMultiplier;
+            if (p != null && Random.value <= p.critChance)
+                finalDamage *= p.critDamage;
+
+            enemy.TakeDamage(finalDamage);
             Destroy(gameObject);
         }
 
         if (col.CompareTag("Boundary"))
-        {
             Destroy(gameObject);
-        }
     }
+
+
+
+
 }
