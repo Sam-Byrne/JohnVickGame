@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: -2622070980974816838}
   - component: {fileID: 7133891722732016210}
   - component: {fileID: 2630959471043639923}
+  - component: {fileID: 6804990739614913693}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
@@ -286,6 +287,8 @@ MonoBehaviour:
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
+  dissolveMat: {fileID: 2100000, guid: 6615e19a7d44d8e49be9b97eb0d7afd4, type: 2}
+  dissolveTime: 1
 --- !u!114 &7133891722732016210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,3 +344,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6804990739614913693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893568915628671063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c730c9cc5546842abfd53e0d325c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFlash
+  flashDuration: 0.1

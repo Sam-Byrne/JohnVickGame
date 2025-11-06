@@ -22,6 +22,12 @@ public class EnemyStats : MonoBehaviour
     public float currentHealth;
     public float currentDamage;
 
+
+    public Material dissolveMat; 
+    public float dissolveTime = 1f;
+
+
+
     void Awake()
     {
         currentMoveSpeed = enemyData.MoveSpeed;
@@ -41,6 +47,7 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        GetComponent<EnemyFlash>()?.Flash();
         bool crit = dmg > enemyData.Damage; 
 
         currentHealth -= dmg;
@@ -63,6 +70,7 @@ public class EnemyStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Kill();
+            return;
         }
     }
 
