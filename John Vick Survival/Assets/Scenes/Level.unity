@@ -163709,9 +163709,9 @@ MonoBehaviour:
     unlockTime: 230
   player: {fileID: 3218154727057269069}
   spawnRadius: 11
-  baseEnemyCount: 5
-  spawnInterval: 1.2
-  waveDelay: 15
+  baseEnemyCount: 10
+  spawnInterval: 0.5
+  waveDelay: 5
 --- !u!1 &1118850009
 GameObject:
   m_ObjectHideFlags: 0

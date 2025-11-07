@@ -15,19 +15,11 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     void Awake()
     {
-        var p = FindObjectOfType<PlayerStats>();
-        currentDamage = weaponData.Damage + p.currentDamage;
-        currentSpeed = weaponData.Speed;
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed + FindObjectOfType<PlayerStats>().currentProjectileSpeed;
         currentCooldownDuration = weaponData.CooldownDuration;
         currentPierce = weaponData.Pierce;
-
-        
-        if (p != null)
-        {
-            currentDamage += p.currentDamage;
-            currentSpeed += p.currentProjectileSpeed;
-           
-        }
+    
     }
     protected virtual void Start()
     {
@@ -91,21 +83,18 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             EnemyStats enemy = col.GetComponent<EnemyStats>();
             PlayerStats p = FindObjectOfType<PlayerStats>();
 
-            float dmg = currentDamage;                  
-            if (p != null) dmg *= p.damageMultiplier;   
-
-            if (p != null && Random.value <= p.critChance)
-            dmg *= p.critDamage;                    
+            float dmg = currentDamage * p.damageMultiplier;
 
             bool crit = false;
-            if (p != null && Random.value <= p.critChance)
+            if (Random.value <= p.critChance)
             {
                 dmg *= p.critDamage;
                 crit = true;
             }
-            enemy.TakeDamage(dmg, crit);
 
+            enemy.TakeDamage(dmg, crit);
             ReducePierce();
+
         }
     }
 

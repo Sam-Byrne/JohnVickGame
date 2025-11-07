@@ -14,7 +14,6 @@ public class PlayerStats : MonoBehaviour
     public float attackSpeedMultiplier = 1f;
     public float maxHealth;
     public float currentHealth;
-    public float currentDamage;
     public float currentProjectileSpeed;
     public float currentRecovery;
     public float currentMagnet;
@@ -88,7 +87,6 @@ public class PlayerStats : MonoBehaviour
 
         maxHealth = characterData.MaxHealth;
         currentHealth = maxHealth;
-        currentDamage = characterData.Damage;
         currentProjectileSpeed = characterData.ProjectileSpeed;
         currentRecovery = characterData.Recovery;
         currentMagnet = characterData.Magnet;
@@ -200,10 +198,6 @@ public class PlayerStats : MonoBehaviour
         currentHealth += amount * 0.5f; // small heal bonus when max health rises
     }
 
-    public void GainDamage(float amount)
-    {
-        currentDamage += amount;
-    }
     public void GainDamagePercent(float percentIncrease)
     {
     
@@ -256,8 +250,8 @@ public class PlayerStats : MonoBehaviour
                 GainMaxHealth(value);
                 break;
 
-            case PassiveItemScriptableObject.PassiveType.Damage:
-                GainDamage(value);
+            case PassiveItemScriptableObject.PassiveType.DamageMultiplier:
+                GainDamagePercent(value);
                 break;
 
             case PassiveItemScriptableObject.PassiveType.MoveSpeed:

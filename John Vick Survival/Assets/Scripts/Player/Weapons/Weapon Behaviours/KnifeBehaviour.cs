@@ -34,21 +34,18 @@ public class KnifeBehaviour : MonoBehaviour
         {
             var p = FindObjectOfType<PlayerStats>();
 
-            float finalDamage = damage;                 
-            if (p != null) finalDamage *= p.damageMultiplier;
-            if (p != null && Random.value <= p.critChance)
-                finalDamage *= p.critDamage;
+            float dmg = damage * p.damageMultiplier;
 
             bool crit = false;
-            if (p != null && Random.value <= p.critChance)
+            if (Random.value <= p.critChance)
             {
-                finalDamage *= p.critDamage;
+                dmg *= p.critDamage;
                 crit = true;
             }
-            enemy.TakeDamage(finalDamage, crit);
 
-
+            enemy.TakeDamage(dmg, crit);
             Destroy(gameObject);
+
         }
 
         if (col.CompareTag("Boundary"))

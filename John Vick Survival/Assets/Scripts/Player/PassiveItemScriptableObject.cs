@@ -19,7 +19,7 @@ public class PassiveItemScriptableObject : ScriptableObject
     public enum PassiveType
     {
         MaxHealth,
-        Damage,
+        DamageMultiplier,
         MoveSpeed,
         AttackSpeed,
         CritChance,
