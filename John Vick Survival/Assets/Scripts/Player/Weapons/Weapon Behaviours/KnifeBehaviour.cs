@@ -39,7 +39,15 @@ public class KnifeBehaviour : MonoBehaviour
             if (p != null && Random.value <= p.critChance)
                 finalDamage *= p.critDamage;
 
-            enemy.TakeDamage(finalDamage);
+            bool crit = false;
+            if (p != null && Random.value <= p.critChance)
+            {
+                finalDamage *= p.critDamage;
+                crit = true;
+            }
+            enemy.TakeDamage(finalDamage, crit);
+
+
             Destroy(gameObject);
         }
 

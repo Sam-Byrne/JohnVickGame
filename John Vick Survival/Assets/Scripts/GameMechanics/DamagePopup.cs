@@ -16,7 +16,7 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(float damage, bool crit)
     {
-        text.text = Mathf.RoundToInt(damage).ToString();
+        text.text = damage.ToString("0.#");
         if (crit) text.color = Color.yellow;   // crits are yellow
     }
 

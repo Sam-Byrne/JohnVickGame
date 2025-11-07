@@ -25,7 +25,14 @@ public class RadianceBehaviour : MeleeWeaponBehaviour
             if (p != null && Random.value <= p.critChance)
                 dmg *= p.critDamage;
 
-            enemy.TakeDamage(dmg);
+            bool crit = false;
+            if (p != null && Random.value <= p.critChance)
+            {
+                dmg *= p.critDamage;
+                crit = true;
+            }
+            enemy.TakeDamage(dmg, crit);
+
             markedEnemies.Add(col.gameObject);
         }
     }

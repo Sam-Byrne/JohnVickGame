@@ -45,10 +45,9 @@ public class EnemyStats : MonoBehaviour
         audioSource.playOnAwake = false;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, bool crit)
     {
         GetComponent<EnemyFlash>()?.Flash();
-        bool crit = dmg > enemyData.Damage; 
 
         currentHealth -= dmg;
 
