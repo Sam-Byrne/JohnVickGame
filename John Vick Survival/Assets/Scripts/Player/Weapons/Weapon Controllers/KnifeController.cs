@@ -21,7 +21,8 @@ public class KnifeController : WeaponController
         float speed = weaponData.Speed + (p != null ? p.currentProjectileSpeed : 0f);
 
         GameObject knife = Instantiate(weaponData.Prefab, transform.position, Quaternion.identity);
-        knife.GetComponent<KnifeBehaviour>().Initialize(weaponData.Damage, dir, speed);
+        float baseDamage = weaponData.Damage;
+        knife.GetComponent<KnifeBehaviour>().Initialize(baseDamage, dir, speed, weaponData.Pierce);
 
         if (attackClip != null) audioSource.PlayOneShot(attackClip, 0.35f);
     }

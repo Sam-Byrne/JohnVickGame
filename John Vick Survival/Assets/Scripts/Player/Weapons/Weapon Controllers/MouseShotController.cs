@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class MouseShotController : WeaponController
 {
+
+    public AudioSource audioSource;
+    public AudioClip attackClip;
+    protected override void Start()
+    {
+        base.Start();
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+    }
     protected override void Attack()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -11,5 +20,6 @@ public class MouseShotController : WeaponController
 
         GameObject proj = Instantiate(weaponData.Prefab, transform.position, Quaternion.identity);
         proj.GetComponent<MouseProjectileBehaviour>().Initialize(direction);
+        if (attackClip != null) audioSource.PlayOneShot(attackClip, 0.35f);
     }
 }

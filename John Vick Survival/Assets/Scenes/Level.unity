@@ -2079,6 +2079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   unlockableWeapons:
   - {fileID: 4602102200147667921, guid: 35026acad78108d489df1b825b5e250d, type: 3}
+  - {fileID: 937675119941558554, guid: effc42654d493dd4f8c6deaa1ba072bd, type: 3}
   passivePool:
   - {fileID: 11400000, guid: 1d72cda1cb1a1434b9672ce913d3d64b, type: 2}
   - {fileID: 11400000, guid: 60cae4a3d5c4303489ec6575562a7a02, type: 2}
@@ -164673,7 +164674,7 @@ GameObject:
   - component: {fileID: 1344860621}
   m_Layer: 0
   m_Name: MainCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
