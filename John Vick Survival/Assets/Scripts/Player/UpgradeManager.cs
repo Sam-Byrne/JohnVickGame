@@ -58,21 +58,32 @@ public class UpgradeManager : MonoBehaviour
         options.Add(new UpgradeOption($"+{critDamageGain:F1}x Crit Damage",
             () => player.GainCritDamage(critDamageGain)));
 
+        float recoveryGain = Random.Range(0.1f, 0.4f); // +0.1 to +0.4 Recovery HP/sec
+        options.Add(new UpgradeOption($"+{recoveryGain:0.0} Recovery",
+            () => player.GainRecovery(recoveryGain)));
+
+
+
         foreach (var item in passivePool)
         {
-            bool hasItem = player.passiveItems.Contains(item);
+            int level = player.GetPassiveLevel(item);
+            bool hasItem = level > 0;
+
+            // stop giving player choice to upgrade if its already max level (level 6)
+            if (level >= 6)
+                continue;
 
             if (!hasItem && player.passiveItems.Count < player.maxPassiveSlots)
             {
-               // Offer item at level 1
                 options.Add(new UpgradeOption($"{item.itemName} (New)", () => player.GainPassiveItem(item)));
             }
             else if (hasItem)
             {
-                // Offer item level up
-                options.Add(new UpgradeOption($"{item.itemName} (Level Up)", () => player.GainPassiveItem(item)));
+                options.Add(new UpgradeOption($"{item.itemName} (Level {level + 1})", () => player.GainPassiveItem(item)));
             }
         }
+
+
 
 
 

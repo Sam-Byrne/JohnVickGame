@@ -14,7 +14,7 @@ public class PassiveItemScriptableObject : ScriptableObject
     public PassiveType passiveType;
 
     [Header("Upgrade Values Per Level")]
-    public float[] upgradeValues; 
+    public float[] upgradeValues;
 
     public enum PassiveType
     {
@@ -24,6 +24,7 @@ public class PassiveItemScriptableObject : ScriptableObject
         AttackSpeed,
         CritChance,
         CritDamage,
-        Magnet
+        Magnet,
+        Recovery
     }
 }

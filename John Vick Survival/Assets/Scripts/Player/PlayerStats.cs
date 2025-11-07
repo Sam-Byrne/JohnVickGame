@@ -238,6 +238,12 @@ public class PlayerStats : MonoBehaviour
         critDamage += amount;
     }
 
+    public void GainRecovery(float amount)
+    {
+        currentRecovery += amount;
+    }
+
+
 
     //passive item stuff
     public void ApplyPassiveEffect(PassiveItemScriptableObject item, int level)
@@ -272,6 +278,10 @@ public class PlayerStats : MonoBehaviour
 
             case PassiveItemScriptableObject.PassiveType.Magnet:
                 GainMagnet(value);
+                break;
+
+            case PassiveItemScriptableObject.PassiveType.Recovery:
+                GainRecovery(value);
                 break;
         }
     }

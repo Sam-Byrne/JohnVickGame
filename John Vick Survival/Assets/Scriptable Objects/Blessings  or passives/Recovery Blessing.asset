@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f24ae30f8e23e824cb25503b6a882b91, type: 3}
-  m_Name: Magnet Blessing
+  m_Name: Recovery Blessing
   m_EditorClassIdentifier: Assembly-CSharp::PassiveItemScriptableObject
-  itemName: Magnet Blessing
-  description: Your faith allows you to reap the essence of the unholy creatures
-    from further away
-  icon: {fileID: 21300000, guid: ff7c43c356f0ce4428118c73448f2a76, type: 3}
-  passiveType: 6
+  itemName: Recovery Blessing
+  description: Your faith strengthens your ability to heal from what would be otherwise
+    grievous wounds.
+  icon: {fileID: 21300000, guid: 93078ff18a06bf747a7e22049b702fb3, type: 3}
+  passiveType: 7
   upgradeValues:
-  - 0.2
   - 0.3
-  - 0.45
-  - 0.7
-  - 0.9
-  - 1.4
+  - 0.5
+  - 1
+  - 2
+  - 3
+  - 4
