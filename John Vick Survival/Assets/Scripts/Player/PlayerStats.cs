@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Damage / IFrames")]
     public float invulnDuration = 0.2f;
-    private float invulnTimer = 0f;
+    //private float invulnTimer = 0f;
     public bool invulnerable = false;
 
     [Header("Critical Stats")]
