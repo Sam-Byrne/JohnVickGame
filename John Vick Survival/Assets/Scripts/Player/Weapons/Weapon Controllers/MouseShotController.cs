@@ -3,16 +3,13 @@ using UnityEngine;
 public class MouseShotController : WeaponController
 {
 
-    public AudioSource audioSource;
-    public AudioClip attackClip;
     protected override void Start()
     {
         base.Start();
-        if (audioSource == null) audioSource = GetComponent<AudioSource>();
-        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
     }
     protected override void Attack()
     {
+        base.Attack();
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 

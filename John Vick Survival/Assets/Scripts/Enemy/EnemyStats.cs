@@ -45,7 +45,7 @@ public class EnemyStats : MonoBehaviour
         audioSource.playOnAwake = false;
     }
 
-    public void TakeDamage(float dmg, bool crit)
+    public void TakeDamage(float dmg, bool crit, WeaponScriptableObject sourceWeapon)
     {
         GetComponent<EnemyFlash>()?.Flash();
 
@@ -63,8 +63,21 @@ public class EnemyStats : MonoBehaviour
             popup.GetComponent<DamagePopup>().Setup(dmg, crit);
         }
 
+        if (sourceWeapon != null && sourceWeapon.hitSound != null && WeaponSoundLimiter.CanPlay(sourceWeapon))
+        {
+            GameObject sfx = new GameObject("HitSound");
+            var a = sfx.AddComponent<AudioSource>();
+            a.spatialBlend = 0f;
+            a.volume = sourceWeapon.hitVolume;
+            a.PlayOneShot(sourceWeapon.hitSound);
+            GameObject.Destroy(sfx, sourceWeapon.hitSound.length);
+        }
+
+
+
         if (damageSound != null)
             AudioSource.PlayClipAtPoint(damageSound, transform.position);
+
 
         if (currentHealth <= 0)
         {
@@ -77,18 +90,16 @@ public class EnemyStats : MonoBehaviour
 
     public void Kill()
     {
-        // play death sound before destroying
         if (deathSound != null)
-            AudioSource.PlayClipAtPoint(damageSound, transform.position);
-        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         if (player != null)
-        {
             player.AddKill();
-        }
 
         Destroy(gameObject);
     }
+
+
 
     private void OnCollisionStay2D(Collision2D col)
     {

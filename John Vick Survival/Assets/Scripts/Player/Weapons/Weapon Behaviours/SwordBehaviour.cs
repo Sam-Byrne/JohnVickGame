@@ -7,6 +7,7 @@ public class SwordBehaviour : MeleeWeaponBehaviour
     public float radius = 0.5f;
     public float sideOffset = 1f;
 
+
     public void SetDirection(Vector2 dir)
     {
         if (dir.x >= 0f)

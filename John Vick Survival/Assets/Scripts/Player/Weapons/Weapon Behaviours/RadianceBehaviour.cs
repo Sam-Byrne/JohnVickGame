@@ -37,7 +37,7 @@ public class RadianceBehaviour : MonoBehaviour
                 crit = true;
             }
 
-            enemy.TakeDamage(dmg, crit);
+            enemy.TakeDamage(dmg, crit, weaponData);
             markedEnemies.Add(col.gameObject);
         }
     }

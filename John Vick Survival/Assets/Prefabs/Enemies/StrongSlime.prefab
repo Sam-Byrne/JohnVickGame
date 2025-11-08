@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2882341194018328498}
   - component: {fileID: 2929521788874037685}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: -2622070980974816838}
   - component: {fileID: 7133891722732016210}
   - component: {fileID: 2630959471043639923}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: StrongSlime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -286,6 +286,8 @@ MonoBehaviour:
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
+  dissolveMat: {fileID: 0}
+  dissolveTime: 1
 --- !u!114 &7133891722732016210
 MonoBehaviour:
   m_ObjectHideFlags: 0

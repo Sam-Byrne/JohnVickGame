@@ -6,11 +6,14 @@ public class WeaponController : MonoBehaviour
 
     protected PlayerMovement pm;
     float cooldownTimer;
+    public AudioSource audioSource;
+    public AudioClip attackClip;
 
     protected virtual void Start()
     {
         pm = FindObjectOfType<PlayerMovement>();
         cooldownTimer = weaponData.CooldownDuration;
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -23,5 +26,9 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    protected virtual void Attack() { }
+    protected virtual void Attack()
+    {
+        if (attackClip != null)
+            audioSource.PlayOneShot(attackClip, 0.35f);
+    }
 }

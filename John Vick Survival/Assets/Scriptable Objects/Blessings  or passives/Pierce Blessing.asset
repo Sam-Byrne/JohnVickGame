@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24ae30f8e23e824cb25503b6a882b91, type: 3}
   m_Name: Pierce Blessing
   m_EditorClassIdentifier: Assembly-CSharp::PassiveItemScriptableObject
-  itemName: 
-  description: 
-  icon: {fileID: 0}
+  itemName: Pierce Blessing
+  description: Your projectiles are blessed, allowing them to strike through more
+    of the horde at once.
+  icon: {fileID: 21300000, guid: 53cff99639470ba4999ae595287143a0, type: 3}
   passiveType: 0
-  upgradeValues: []
+  upgradeValues:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1

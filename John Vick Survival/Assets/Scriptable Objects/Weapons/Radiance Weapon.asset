@@ -17,3 +17,4 @@ MonoBehaviour:
   speed: 0
   cooldownDuration: 5.5
   pierce: 0
+  hitSound: {fileID: 8300000, guid: 785adec5f703efc448de7156bc2ec43a, type: 3}

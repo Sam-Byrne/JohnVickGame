@@ -93,18 +93,20 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
                 crit = true;
             }
 
-            enemy.TakeDamage(dmg, crit);
-            ReducePierce();
+            enemy.TakeDamage(dmg, crit, weaponData);
 
-        }
-    }
+            if (weaponData.hitSound != null)
+            {
+                GameObject sfx = new GameObject("HitSound");
+                var a = sfx.AddComponent<AudioSource>();
+                a.spatialBlend = 0f;
+                a.PlayOneShot(weaponData.hitSound);
+                Destroy(sfx, weaponData.hitSound.length);
+            }
 
-    void ReducePierce()
-    {
-        currentPierce--;
-        if (currentPierce <= 0)
-        {
-            Destroy(gameObject);
+            currentPierce--;
+            if (currentPierce <= 0)
+                Destroy(gameObject);
         }
     }
 }

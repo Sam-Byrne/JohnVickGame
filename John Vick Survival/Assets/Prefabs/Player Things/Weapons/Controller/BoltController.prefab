@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MouseShotController
   weaponData: {fileID: 11400000, guid: c769ada389c068945a8410d59f31ff30, type: 2}
   audioSource: {fileID: 5009934999505033189}
-  attackClip: {fileID: 8300000, guid: 256e14c5758496b42b81b0bec53b5162, type: 3}
+  attackClip: {fileID: 8300000, guid: 9457b927154654943a3d34eb7ed02ad5, type: 3}
 --- !u!82 &5009934999505033189
 AudioSource:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.275
   m_Pitch: 1
   Loop: 0
   Mute: 0

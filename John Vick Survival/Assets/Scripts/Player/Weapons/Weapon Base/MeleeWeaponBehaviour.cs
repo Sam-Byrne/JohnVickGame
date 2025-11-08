@@ -25,12 +25,13 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         Destroy(gameObject, destroyAfterSeconds);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D col)
+    protected void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
             PlayerStats p = FindObjectOfType<PlayerStats>();
+
             float dmg = currentDamage * p.damageMultiplier;
 
             bool crit = false;
@@ -40,11 +41,17 @@ public class MeleeWeaponBehaviour : MonoBehaviour
                 crit = true;
             }
 
-            enemy.TakeDamage(dmg, crit);
+            enemy.TakeDamage(dmg, crit, weaponData);
 
-
+            if (weaponData.hitSound != null)
+            {
+                GameObject sfx = new GameObject("HitSound");
+                var a = sfx.AddComponent<AudioSource>();
+                a.spatialBlend = 0f;
+                a.PlayOneShot(weaponData.hitSound);
+                Destroy(sfx, weaponData.hitSound.length);
+            }
         }
     }
-
 
 }

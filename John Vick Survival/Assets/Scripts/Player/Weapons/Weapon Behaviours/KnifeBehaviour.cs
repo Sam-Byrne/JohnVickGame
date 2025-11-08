@@ -45,7 +45,7 @@ public class KnifeBehaviour : MonoBehaviour
                 crit = true;
             }
 
-            enemy.TakeDamage(dmg, crit);
+            enemy.TakeDamage(dmg, crit, FindObjectOfType<KnifeController>().weaponData);
 
             currentPierce--;
             if (currentPierce <= 0)

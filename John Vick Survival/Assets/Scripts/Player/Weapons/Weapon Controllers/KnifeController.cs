@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class KnifeController : WeaponController
 {
-    public AudioSource audioSource;
-    public AudioClip attackClip;
 
     protected override void Start()
     {
         base.Start();
-        if (audioSource == null) audioSource = GetComponent<AudioSource>();
-        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     protected override void Attack()
     {
+        base.Attack();
         if (pm == null) pm = FindObjectOfType<PlayerMovement>();
         Vector2 dir = pm.LastAimDir;
 

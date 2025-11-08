@@ -49,7 +49,7 @@ public class MouseProjectileBehaviour : MonoBehaviour
                 crit = true;
             }
 
-            enemy.TakeDamage(dmg, crit);
+            enemy.TakeDamage(dmg, crit, weaponData);
 
             currentPierce--;
             if (currentPierce <= 0)

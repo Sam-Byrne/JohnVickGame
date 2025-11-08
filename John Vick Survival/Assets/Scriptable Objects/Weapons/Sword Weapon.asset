@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d900e01a3bd2b04faf3a94f75bbec99, type: 3}
   m_Name: Sword Weapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
-  prefab: {fileID: 6244502719731070685, guid: 86f578c2b31ec9344a1ebcde34129d70, type: 3}
-  damage: 20
+  prefab: {fileID: 7374563845464950471, guid: 9f4fb7601011d4946a3db2a47922072e, type: 3}
+  damage: 5
   speed: 1
-  cooldownDuration: 1
+  cooldownDuration: 1.6
   pierce: 1
+  hitSound: {fileID: 8300000, guid: c84556edc1111a047ad008e0fac50108, type: 3}

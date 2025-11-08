@@ -18,9 +18,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ecd405cee8c8a174f99f9e31b6393b07, type: 3}
   passiveType: 1
   upgradeValues:
-  - 15
-  - 20
-  - 20
-  - 35
-  - 50
-  - 75
+  - 0.15
+  - 0.2
+  - 0.2
+  - 0.35
+  - 0.5
+  - 0.75
