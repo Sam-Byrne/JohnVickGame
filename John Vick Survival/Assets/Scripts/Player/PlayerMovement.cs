@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 LastAimDir { get; private set; } = Vector2.right;
 
     public bool alive = true;
+    public Vector2 lastFacing = Vector2.right;
+
 
     void Start()
     {
@@ -34,8 +36,13 @@ public class PlayerMovement : MonoBehaviour
         moveInput = moveInput.normalized;
         rb.linearVelocity = moveInput * moveSpeed;
 
-       
+
         animator.SetFloat("Speed", rb.linearVelocity.sqrMagnitude);
+        
+        if (moveInput.x > 0f)
+            lastFacing = Vector2.right;
+        else if (moveInput.x < 0f)
+            lastFacing = Vector2.left; 
 
         
         if (moveInput.sqrMagnitude > 0.01f)

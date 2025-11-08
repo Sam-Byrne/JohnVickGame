@@ -25,6 +25,7 @@ public class PassiveItemScriptableObject : ScriptableObject
         CritChance,
         CritDamage,
         Magnet,
-        Recovery
+        Recovery,
+        bonusPierce
     }
 }

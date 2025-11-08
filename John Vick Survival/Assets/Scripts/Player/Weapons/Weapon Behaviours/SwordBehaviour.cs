@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SwordBehaviour : MeleeWeaponBehaviour
 {
-    public float swingDuration = 0.12f;
+    public float swingDuration = 0.22f;
     public float radius = 0.5f;
     public float sideOffset = 1f;
 

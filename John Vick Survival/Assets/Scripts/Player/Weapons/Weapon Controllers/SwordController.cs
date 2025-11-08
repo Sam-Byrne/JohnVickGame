@@ -21,7 +21,7 @@ public class SwordController : WeaponController
         var sword = swordGO.GetComponent<SwordBehaviour>();
         if (sword != null)
         {
-            sword.SetDirection(pm.LastAimDir);
+            sword.SetDirection(pm.lastFacing);
         }
     }
 }

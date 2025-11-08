@@ -11,14 +11,15 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     protected float currentDamage;
     protected float currentSpeed;
     protected float currentCooldownDuration;
-    protected int currentPierce;
+    protected float currentPierce;
 
     void Awake()
     {
         currentDamage = weaponData.Damage;
         currentSpeed = weaponData.Speed + FindObjectOfType<PlayerStats>().currentProjectileSpeed;
         currentCooldownDuration = weaponData.CooldownDuration;
-        currentPierce = weaponData.Pierce;
+        currentPierce = weaponData.Pierce + FindObjectOfType<PlayerStats>().bonusPierce;
+
     
     }
     protected virtual void Start()

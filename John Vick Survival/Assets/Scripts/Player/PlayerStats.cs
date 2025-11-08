@@ -19,6 +19,9 @@ public class PlayerStats : MonoBehaviour
     public float currentMagnet;
     public float damageMultiplier = 1f;
 
+    public float bonusPierce = 0;
+
+
     public List<GameObject> spawnedWeapons = new List<GameObject>();
 
     public int level = 1;
@@ -243,6 +246,11 @@ public class PlayerStats : MonoBehaviour
         currentRecovery += amount;
     }
 
+    public void GainPierce(float amount)
+    {
+        bonusPierce += amount;
+    }
+
 
 
     //passive item stuff
@@ -283,6 +291,10 @@ public class PlayerStats : MonoBehaviour
             case PassiveItemScriptableObject.PassiveType.Recovery:
                 GainRecovery(value);
                 break;
+
+            case PassiveItemScriptableObject.PassiveType.bonusPierce:
+                GainPierce(value);
+                break;    
         }
     }
 
