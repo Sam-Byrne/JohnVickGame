@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776675f82ab20454d85f8df167cf6aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotion
+  pickupSound: {fileID: 8300000, guid: 97d446b332032a7488fe055e88aae0f2, type: 3}
+  pickupVolume: 1
+  isCollected: 0
   healAmount: 10
   pullSpeed: 8
 --- !u!50 &-7237488670838485780

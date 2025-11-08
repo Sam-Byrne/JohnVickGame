@@ -23,9 +23,6 @@ public class EnemyStats : MonoBehaviour
     public float currentDamage;
 
 
-    public Material dissolveMat; 
-    public float dissolveTime = 1f;
-
 
 
     void Awake()
@@ -63,14 +60,15 @@ public class EnemyStats : MonoBehaviour
             popup.GetComponent<DamagePopup>().Setup(dmg, crit);
         }
 
-        if (sourceWeapon != null && sourceWeapon.hitSound != null && WeaponSoundLimiter.CanPlay(sourceWeapon))
+        if (sourceWeapon != null)
         {
-            GameObject sfx = new GameObject("HitSound");
-            var a = sfx.AddComponent<AudioSource>();
-            a.spatialBlend = 0f;
-            a.volume = sourceWeapon.hitVolume;
-            a.PlayOneShot(sourceWeapon.hitSound);
-            GameObject.Destroy(sfx, sourceWeapon.hitSound.length);
+            if (sourceWeapon.hitSound != null && WeaponSoundLimiter.CanPlay(sourceWeapon))
+                PlaySound(sourceWeapon.hitSound, sourceWeapon.hitVolume);
+
+            if (crit && sourceWeapon.critSound != null && WeaponSoundLimiter.CanPlay(sourceWeapon))
+            {
+                PlaySound(sourceWeapon.critSound, sourceWeapon.critVolume);
+            }
         }
 
 
@@ -84,6 +82,16 @@ public class EnemyStats : MonoBehaviour
             Kill();
             return;
         }
+    }
+
+    void PlaySound(AudioClip clip, float volume)
+    {
+        GameObject sfx = new GameObject("HitSound");
+        var a = sfx.AddComponent<AudioSource>();
+        a.spatialBlend = 0f;
+        a.volume = volume;
+        a.PlayOneShot(clip);
+        Destroy(sfx, clip.length);
     }
 
 

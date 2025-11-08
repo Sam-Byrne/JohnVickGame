@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class HealthPotion : MonoBehaviour, ICollectable
+public class HealthPotion : Pickup, ICollectable  // was: MonoBehaviour
 {
-    public int healAmount = 10; // Set different values per prefab in Inspector
+    public int healAmount = 10;
     public float pullSpeed = 8f;
 
     Transform player;
@@ -28,6 +28,18 @@ public class HealthPotion : MonoBehaviour, ICollectable
         {
             PlayerStats p = player.GetComponent<PlayerStats>();
             p.currentHealth = Mathf.Min(p.currentHealth + healAmount, p.maxHealth);
+
+            // juicy pickup sound
+            if (pickupSound != null)
+            {
+                var sfx = new GameObject("PickupSFX").AddComponent<AudioSource>();
+                sfx.spatialBlend = 0f;
+                sfx.volume = pickupVolume;
+                sfx.pitch = Random.Range(0.92f, 1.08f);
+                sfx.PlayOneShot(pickupSound);
+                Destroy(sfx.gameObject, pickupSound.length);
+            }
+
             Destroy(gameObject);
         }
     }

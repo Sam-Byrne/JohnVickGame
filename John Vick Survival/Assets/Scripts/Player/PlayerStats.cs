@@ -43,15 +43,14 @@ public class PlayerStats : MonoBehaviour
     public int maxPassiveSlots = 3;
 
 
-
-
-
     [Header("Audio")]
-    public AudioSource sfxSource;               // assign in inspector
-    public AudioClip damageSFX;                 // plays on every hit
-    public AudioClip heartbeatNormal;           // plays if health > 30%
-    public AudioClip heartbeatIntense;          // plays if health < 30%
-    public AudioClip deathSFX;                  // plays when player dies
+    public AudioSource sfxSource; 
+    public AudioClip damageSFX;  
+    public AudioClip heartbeatNormal;   
+    public AudioClip heartbeatIntense;        
+    public AudioClip deathSFX;             
+    public AudioClip levelUpSound;
+    [Range(0f, 1f)] public float levelUpVolume = 1f;
 
 
 
@@ -125,6 +124,15 @@ public class PlayerStats : MonoBehaviour
     {
         if (experience >= experienceCap)
         {
+            if (levelUpSound != null)
+            {
+                var sfx = new GameObject("LevelUpSFX").AddComponent<AudioSource>();
+                sfx.spatialBlend = 0f;
+                sfx.volume = levelUpVolume;
+                sfx.PlayOneShot(levelUpSound);
+                Destroy(sfx.gameObject, levelUpSound.length);
+            }
+    
             level++;
             experience -= experienceCap;
             experienceCap += experienceCapIncrease;

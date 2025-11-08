@@ -22,11 +22,15 @@ public class WeaponScriptableObject : ScriptableObject
 
     [Header("Audio")]
     public AudioClip hitSound;
+    public AudioClip critSound;
+    [Range(0f, 1f)] public float critVolume = 1f;
     [Range(0, 8)]
     public int maxSimultaneousHitSounds = 3;
 
     [Range(0f, 1f)]
     public float hitVolume = 1f;
+
+    
 
 
 
