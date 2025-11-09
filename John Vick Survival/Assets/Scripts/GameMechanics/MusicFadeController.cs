@@ -5,6 +5,11 @@ public class MusicFadeController : MonoBehaviour
 {
     public AudioSource musicSource;
 
+    public void ResetMusic()
+    {
+        StartCoroutine(ResetMusicRoutine());
+    }
+
     public void SlowMusic()
     {
         StartCoroutine(SlowMusicRoutine());
@@ -26,4 +31,21 @@ public class MusicFadeController : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator ResetMusicRoutine()
+    {
+        float startPitch = musicSource.pitch;
+        float startVolume = musicSource.volume;
+
+        float duration = 0.9f;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            musicSource.pitch = Mathf.Lerp(startPitch, 1f, t / duration);
+            musicSource.volume = Mathf.Lerp(startVolume, startVolume * 1f, t / duration);
+            yield return null;
+        }
+    }
+
 }

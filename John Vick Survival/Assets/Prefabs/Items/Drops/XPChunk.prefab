@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XP
   pickupSound: {fileID: 8300000, guid: 6ea1bdbace1534a4e989d2d185314c43, type: 3}
-  pickupVolume: 0.655
+  pickupVolume: 0.451
   isCollected: 0
   xpValue: 4
   pullSpeed: 8

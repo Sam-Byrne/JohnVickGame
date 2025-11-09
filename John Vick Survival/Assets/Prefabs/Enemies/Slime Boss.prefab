@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1532638481184470119}
   - component: {fileID: 2344614364374591865}
   - component: {fileID: 3359593175641820809}
+  - component: {fileID: 2753407463452042464}
   m_Layer: 13
   m_Name: Slime Boss
   m_TagString: Untagged
@@ -250,3 +251,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1478273, y: 0.7100776}
   m_EdgeRadius: 0
+--- !u!114 &2753407463452042464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541090785743796477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c730c9cc5546842abfd53e0d325c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFlash
+  flashDuration: 0.1

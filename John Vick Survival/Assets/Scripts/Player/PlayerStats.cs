@@ -58,14 +58,10 @@ public class PlayerStats : MonoBehaviour
     [Range(0f, 1f)] public float levelUpVolume = 1f;
 
 
-
-
     public bool alive = true;
     PlayerMovement pm;
 
     public GameObject PlayerDeathEffect;
-
-
 
     public int kills = 0;
 
@@ -73,7 +69,6 @@ public class PlayerStats : MonoBehaviour
     {
         pm = GetComponent<PlayerMovement>();
     }
-
 
     void Awake()
     {

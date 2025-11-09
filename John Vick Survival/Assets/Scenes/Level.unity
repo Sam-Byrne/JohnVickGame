@@ -167885,7 +167885,7 @@ PrefabInstance:
       objectReference: {fileID: 1152655553}
     - target: {fileID: 3150744061078399903, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: experienceCapIncrease
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4054367856885721713, guid: 3e3d8bffd1e33214fbe197675e0498cc, type: 3}
       propertyPath: m_SortingLayer

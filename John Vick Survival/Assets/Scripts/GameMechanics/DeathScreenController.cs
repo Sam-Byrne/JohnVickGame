@@ -35,6 +35,7 @@ public class DeathScreenController : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        FindObjectOfType<MusicFadeController>().ResetMusic();
         SceneManager.LoadScene("Menu");
     }
 }
