@@ -25,6 +25,17 @@ public class HUDController : MonoBehaviour
     public GameObject passiveItemSlotPrefab;
 
     float timer;
+    public float Timer => timer;
+
+
+    // boss stuff
+    public Slider bossHealthBar;
+    public TextMeshProUGUI bossNameText;
+    private EnemyStats trackedBoss;
+    public static HUDController Instance;
+
+
+
 
     void OnEnable()
     {
@@ -32,6 +43,12 @@ public class HUDController : MonoBehaviour
             player = FindObjectOfType<PlayerStats>();
     }
 
+    void Start()
+    {
+        Instance = this;
+        bossHealthBar.gameObject.SetActive(false);
+
+    }
 
     void Update()
     {
@@ -57,6 +74,11 @@ public class HUDController : MonoBehaviour
         c.a = Mathf.Lerp(c.a, targetAlpha, Time.deltaTime * 5f);
         damageVignette.color = c;
 
+        if (trackedBoss != null)
+        {
+            bossHealthBar.maxValue = trackedBoss.enemyData.MaxHealth;
+            bossHealthBar.value = trackedBoss.currentHealth;
+        }
 
     }
 
@@ -65,7 +87,7 @@ public class HUDController : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(DamageFlashRoutine());
     }
-
+    
     IEnumerator DamageFlashRoutine()
     {
         Color c = damageFlash.color;
@@ -104,4 +126,31 @@ public class HUDController : MonoBehaviour
     {
         stopTimer = true;
     }
+
+    public void ShowBossHealth(EnemyStats boss, string bossName)
+    {
+        trackedBoss = boss;
+
+        bossHealthBar.gameObject.SetActive(true);
+        bossNameText.gameObject.SetActive(true);
+
+        bossNameText.text = bossName;
+        Debug.Log("Boss Name Set To: " + bossName);
+
+
+        bossHealthBar.maxValue = boss.enemyData.MaxHealth;
+        bossHealthBar.value = boss.currentHealth;
+    }
+    public void HideBossHealth()
+    {
+        trackedBoss = null;
+        bossHealthBar.gameObject.SetActive(false);
+        bossNameText.gameObject.SetActive(false);
+    }
+
+    public bool IsBossHealthVisible(EnemyStats stats)
+    {
+        return trackedBoss == stats;
+    }
+
 }

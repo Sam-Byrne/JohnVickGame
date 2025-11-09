@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Slime Boss
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScriptableObject
   moveSpeed: 0.55
-  maxHealth: 1000
+  maxHealth: 350
   damage: 35

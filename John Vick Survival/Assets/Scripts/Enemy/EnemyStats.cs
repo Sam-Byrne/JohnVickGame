@@ -22,6 +22,9 @@ public class EnemyStats : MonoBehaviour
     public float currentHealth;
     public float currentDamage;
 
+    public System.Action onEnemyDeath;
+
+
 
 
 
@@ -104,10 +107,15 @@ public class EnemyStats : MonoBehaviour
         if (player != null)
             player.AddKill();
 
+        if (HUDController.Instance != null && HUDController.Instance.IsBossHealthVisible(this))
+        {
+            HUDController.Instance.HideBossHealth();
+            AudioManager.Instance.PlayRandomLevelMusic(); 
+        }
+
+        onEnemyDeath?.Invoke();
         Destroy(gameObject);
     }
-
-
 
     private void OnCollisionStay2D(Collision2D col)
     {

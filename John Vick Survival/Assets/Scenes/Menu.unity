@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bece3c56b87454395d4f798e12c05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelector
-  characterData: {fileID: 0}
+  characterData: {fileID: 11400000, guid: cc3c030586dde7c42af252a3c800cdc8, type: 2}
 --- !u!1 &1005349040
 GameObject:
   m_ObjectHideFlags: 0
