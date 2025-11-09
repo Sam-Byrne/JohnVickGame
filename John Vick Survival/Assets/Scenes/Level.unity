@@ -163958,9 +163958,13 @@ MonoBehaviour:
   - prefab: {fileID: 8893568915628671063, guid: 5a1739c9b8ced894c93e86c599bc0afa, type: 3}
     unlockTime: 0
   - prefab: {fileID: 8893568915628671063, guid: 5e14dbce9c856b24ba0e69bdedd9322a, type: 3}
-    unlockTime: 45
+    unlockTime: 60
   - prefab: {fileID: 8893568915628671063, guid: 2c0f0a9e06690cb4891b0fec38906afc, type: 3}
-    unlockTime: 90
+    unlockTime: 120
+  - prefab: {fileID: 8893568915628671063, guid: 4de3f93dbc2c32c48b42687231ee387c, type: 3}
+    unlockTime: 180
+  - prefab: {fileID: 8893568915628671063, guid: 6f4a4e2ddd39f2949b9203f3357ba8de, type: 3}
+    unlockTime: 240
   player: {fileID: 3218154727057269069}
   spawnRadius: 13
   baseEnemyCount: 20
