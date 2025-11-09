@@ -11,6 +11,7 @@ public class HUDController : MonoBehaviour
     public Slider xpBar;
     public Image damageFlash;
 
+    bool stopTimer = false;
 
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI levelText;
@@ -44,7 +45,9 @@ public class HUDController : MonoBehaviour
         levelText.text = "LV " + player.level;
         killText.text = player.kills.ToString();
 
-        timer += Time.deltaTime;
+        if (!stopTimer)
+            timer += Time.deltaTime;
+
         timerText.text = $"{(int)(timer / 60):00}:{(int)(timer % 60):00}";
 
         float healthPercent = player.currentHealth / player.maxHealth;
@@ -97,8 +100,8 @@ public class HUDController : MonoBehaviour
         }
     }
 
-
-
-
-
+    public void StopTimer()
+    {
+        stopTimer = true;
+    }
 }

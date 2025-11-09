@@ -17,4 +17,8 @@ MonoBehaviour:
   speed: 1
   cooldownDuration: 1.6
   pierce: 1
-  hitSound: {fileID: 8300000, guid: c84556edc1111a047ad008e0fac50108, type: 3}
+  hitSound: {fileID: 8300000, guid: a4d4a37dca055204b92e698019417640, type: 3}
+  critSound: {fileID: 8300000, guid: aa46c94091622284eb7667e6a83f8a22, type: 3}
+  critVolume: 0.686
+  maxSimultaneousHitSounds: 1
+  hitVolume: 1

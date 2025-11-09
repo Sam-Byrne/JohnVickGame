@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthPotion : Pickup, ICollectable  // was: MonoBehaviour
+public class HealthPotion : Pickup, ICollectable  
 {
     public int healAmount = 10;
     public float pullSpeed = 8f;
@@ -29,7 +29,7 @@ public class HealthPotion : Pickup, ICollectable  // was: MonoBehaviour
             PlayerStats p = player.GetComponent<PlayerStats>();
             p.currentHealth = Mathf.Min(p.currentHealth + healAmount, p.maxHealth);
 
-            // juicy pickup sound
+
             if (pickupSound != null)
             {
                 var sfx = new GameObject("PickupSFX").AddComponent<AudioSource>();

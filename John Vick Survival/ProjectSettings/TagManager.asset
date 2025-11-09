@@ -21,7 +21,7 @@ TagManager:
   - Weapons
   - Collector
   - Enemy
-  - 
+  - PlayerOnly
   - 
   - 
   - 
@@ -63,6 +63,9 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3249998221
+    locked: 0
+  - name: AboveUI
+    uniqueID: 373634103
     locked: 0
   m_RenderingLayers:
   - Default

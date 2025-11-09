@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7570072969226323750}
   - component: {fileID: 6535477770141329009}
   - component: {fileID: 6179887163958448011}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PlayerDeathEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,9 +77,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 373634103
+  m_SortingLayer: 8
+  m_SortingOrder: 4140
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

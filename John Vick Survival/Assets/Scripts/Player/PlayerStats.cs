@@ -2,10 +2,15 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 public class PlayerStats : MonoBehaviour
 {
     public static Action OnLevelUpUI;
     public AudioSource musicSource;
+    public DeathScreenController deathScreenController;
+
+
 
 
     public CharacterScriptableObject characterData;
@@ -173,7 +178,6 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(InvulnerabilityFrames());
     }
 
-
     void Die()
     {
         alive = false;
@@ -183,14 +187,18 @@ public class PlayerStats : MonoBehaviour
             sfxSource.PlayOneShot(deathSFX);
 
         Instantiate(PlayerDeathEffect, transform.position, Quaternion.identity);
+        HUDController hud = FindObjectOfType<HUDController>();
+        if (hud != null) hud.StopTimer();
 
         FindObjectOfType<MusicFadeController>().SlowMusic();
+
+        if (deathScreenController != null)
+            deathScreenController.TriggerGameOver();
+        else
+            Debug.LogError("DeathScreenController is NOT assigned to PlayerStats!");
+
         Destroy(gameObject);
-
     }
-
-
-
 
 
     public void IncreaseExperience(int amount) => experience += amount;
@@ -206,7 +214,7 @@ public class PlayerStats : MonoBehaviour
     public void GainMaxHealth(float amount)
     {
         maxHealth += amount;
-        currentHealth += amount * 0.5f; // small heal bonus when max health rises
+        currentHealth += amount * 0.8f; // small heal bonus when max health rises
     }
 
     public void GainDamagePercent(float percentIncrease)
@@ -331,11 +339,6 @@ public class PlayerStats : MonoBehaviour
 
         return 0;
     }
-
-
-
-
-
 
 
 }

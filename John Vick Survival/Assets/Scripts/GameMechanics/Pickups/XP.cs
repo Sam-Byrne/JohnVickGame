@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class XP : Pickup, ICollectable  // was: MonoBehaviour
+public class XP : Pickup, ICollectable 
 {
     public int xpValue = 1;
     public float pullSpeed = 8f;
@@ -26,9 +26,8 @@ public class XP : Pickup, ICollectable  // was: MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) < 0.2f)
         {
-            player.GetComponent<PlayerStats>().IncreaseExperience(xpValue);  // ← your method name
+            player.GetComponent<PlayerStats>().IncreaseExperience(xpValue);  
 
-            // juicy pickup sound (uses fields from Pickup.cs)
             if (pickupSound != null)
             {
                 var sfx = new GameObject("PickupSFX").AddComponent<AudioSource>();
