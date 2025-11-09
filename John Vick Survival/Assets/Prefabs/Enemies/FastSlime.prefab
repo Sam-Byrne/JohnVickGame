@@ -175,7 +175,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1039882409
   m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7078261816480267791, guid: e3e4cfa96802e1447972c6118dc1f1d9, type: 3}
   m_Color: {r: 0.26653767, g: 1, b: 0, a: 1}
   m_FlipX: 0
@@ -286,8 +286,6 @@ MonoBehaviour:
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
-  dissolveMat: {fileID: 0}
-  dissolveTime: 1
 --- !u!114 &7133891722732016210
 MonoBehaviour:
   m_ObjectHideFlags: 0
