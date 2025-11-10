@@ -15,7 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 5519854863619753903, guid: 92f51a541db031c4b9a55cfeaf15bc44, type: 3}
   damage: 8
   speed: 6
-  cooldownDuration: 2
+  cooldownDuration: 1.9
   pierce: 2
   hitSound: {fileID: 8300000, guid: 1437dbb1fe99eff409ae7906e97237d0, type: 3}
   critSound: {fileID: 8300000, guid: aa46c94091622284eb7667e6a83f8a22, type: 3}
